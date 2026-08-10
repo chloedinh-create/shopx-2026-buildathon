@@ -240,6 +240,24 @@ body {
 .cluster-card:hover .cluster-panel { background: rgba(255,255,255,0.13); }
 .cluster-name { font-size: 21px; font-weight: 500; color: #fff; margin-bottom: 6px; letter-spacing: -0.01em; }
 .cluster-desc { font-size: 14px; color: var(--on-dark-2); line-height: 1.55; }
+
+.track-list { display: flex; flex-direction: column; }
+.track-item {
+  display: flex; gap: 14px; align-items: flex-start; padding: 14px 6px;
+  margin: 0 -6px; border-radius: 10px; border-top: 1px solid rgba(255,255,255,0.09);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.track-item:first-child { border-top: none; }
+.track-item:hover { background: rgba(166,77,255,0.1); transform: translateX(4px); }
+.track-item-num {
+  flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; background: rgba(255,255,255,0.1);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.track-item:hover .track-item-num { background: var(--grad); transform: scale(1.1); }
+.track-item-name { font-size: 14.5px; font-weight: 600; color: #fff; margin-bottom: 2px; letter-spacing: -0.005em; }
+.track-item-desc { font-size: 12.5px; color: var(--on-dark-2); line-height: 1.5; }
 .tracks-note {
   text-align: center; font-size: 12.5px; color: var(--ink-2);
   border: 1px dashed rgba(20,10,55,0.18); border-radius: 12px; padding: 14px; background: var(--white);
@@ -450,16 +468,75 @@ body {
           <div class="cluster-name">AI App Sprint</div>
           <div class="cluster-desc">Build end-to-end AI solution packages for real ecommerce challenges — using apps already live in the Shopify ecosystem.</div>
         </div>
+        <div class="track-list">
+          <div class="track-item">
+            <div class="track-item-num">01</div>
+            <div>
+              <div class="track-item-name">Market Research</div>
+              <div class="track-item-desc">Turn market data into opportunities with an AI research solution.</div>
+            </div>
+          </div>
+          <div class="track-item">
+            <div class="track-item-num">02</div>
+            <div>
+              <div class="track-item-name">Product Offer</div>
+              <div class="track-item-desc">Shape the insights into validated, high-converting offers.</div>
+            </div>
+          </div>
+          <div class="track-item">
+            <div class="track-item-num">03</div>
+            <div>
+              <div class="track-item-name">Store Migration</div>
+              <div class="track-item-desc">Migrate, optimize, and relaunch with an AI-powered workflow.</div>
+            </div>
+          </div>
+          <div class="track-item">
+            <div class="track-item-num">04</div>
+            <div>
+              <div class="track-item-name">Operation Management</div>
+              <div class="track-item-desc">Connect key workflows to streamline the whole operation.</div>
+            </div>
+          </div>
+          <div class="track-item">
+            <div class="track-item-num">05</div>
+            <div>
+              <div class="track-item-name">Agent Customer Support</div>
+              <div class="track-item-desc">Complete the package with a scalable AI support system.</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="cluster-card reveal">
-        <div class="cluster-tag">4 TRACKS</div>
+        <div class="cluster-tag">3 TRACKS</div>
         <div class="cluster-panel">
           <div class="cluster-name">Build AI Workflow with Hermes</div>
           <div class="cluster-desc">Build an all-in-one AI workflow for complex ecommerce processes, powered by Hermes.</div>
         </div>
+        <div class="track-list">
+          <div class="track-item">
+            <div class="track-item-num">01</div>
+            <div>
+              <div class="track-item-name">Storefront &amp; CRO</div>
+              <div class="track-item-desc">Connect storefront creation, testing, and CRO optimization.</div>
+            </div>
+          </div>
+          <div class="track-item">
+            <div class="track-item-num">02</div>
+            <div>
+              <div class="track-item-name">Creative &amp; UGC</div>
+              <div class="track-item-desc">Automate the flow from product data to ready-to-use creatives.</div>
+            </div>
+          </div>
+          <div class="track-item">
+            <div class="track-item-num">03</div>
+            <div>
+              <div class="track-item-name">POD Studio</div>
+              <div class="track-item-desc">Link design, product creation, and publishing in one click.</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="tracks-note reveal">Individual track topics inside each cluster are being finalized with partners — full breakdown coming soon.</div>
   </div>
 </section>
 
