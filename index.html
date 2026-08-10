@@ -102,9 +102,6 @@ body {
 .band-sub { font-size: 17px; max-width: 640px; line-height: 1.5; }
 .band.light .band-sub { color: var(--ink-2); }
 .band.dark .band-sub { color: var(--on-dark-2); }
-.band-note { font-size: 14px; max-width: 560px; line-height: 1.55; opacity: 0.85; }
-.band.light .band-note { color: var(--ink-2); }
-.band.dark .band-note { color: var(--on-dark-2); }
 
 /* ── Hero ── */
 .hero { padding: 64px 0 88px; position: relative; overflow: hidden; background: var(--dark); color: #fff; }
@@ -198,7 +195,7 @@ body {
 }
 
 /* ── Value for sellers ── */
-.value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 56px; }
+.value-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 56px; }
 @media (max-width: 860px) { .value-grid { grid-template-columns: 1fr; } }
 .value-card {
   background: linear-gradient(180deg, var(--card-a), var(--card-b)); border: 1px solid var(--card-bdr);
@@ -428,8 +425,7 @@ body {
     <div class="band-header reveal">
       <div class="eyebrow">01 — What is it</div>
       <h2 class="band-title">What is the Buildathon<br>at ShopX 2026?</h2>
-      <p class="band-sub">Right after the morning keynotes end, ShopX turns into a build floor. Six teams get one afternoon to design, build, and pitch a real AI workflow for ecommerce — live, to a panel of operators and investors.</p>
-      <p class="band-note">In short: pick a track, get matched into a team led by a Shopify app partner, and spend the afternoon turning a real idea into a working AI product — no build experience required.</p>
+      <p class="band-sub">Right after the morning keynotes, ShopX turns into a build floor — six teams get one afternoon to build and pitch a real AI workflow, live to a judging panel.</p>
     </div>
     <div class="feat-grid" data-stagger>
       <div class="feat-card reveal">
@@ -598,6 +594,11 @@ body {
         <div class="value-num">03</div>
         <div class="value-title">Something you keep</div>
         <div class="value-body">Walk out with a working AI workflow you can plug straight into your own store — plus the certificate to prove you built it.</div>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-num">04</div>
+        <div class="value-title">Built for your problem, not a demo</div>
+        <div class="value-body">When you apply, you'll get an open question to describe the real issue you're facing in your store. That's the brief your team builds against — so what you walk away with is a solution to your problem, not a generic showcase.</div>
       </div>
     </div>
 
