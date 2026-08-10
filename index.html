@@ -102,6 +102,9 @@ body {
 .band-sub { font-size: 17px; max-width: 640px; line-height: 1.5; }
 .band.light .band-sub { color: var(--ink-2); }
 .band.dark .band-sub { color: var(--on-dark-2); }
+.band-note { font-size: 14px; max-width: 560px; line-height: 1.55; opacity: 0.85; }
+.band.light .band-note { color: var(--ink-2); }
+.band.dark .band-note { color: var(--on-dark-2); }
 
 /* ── Hero ── */
 .hero { padding: 64px 0 88px; position: relative; overflow: hidden; background: var(--dark); color: #fff; }
@@ -175,17 +178,24 @@ body {
   transition: transform 0.25s cubic-bezier(.22,1,.36,1), background 0.25s ease, border-color 0.25s ease;
 }
 .slot.seller { background: rgba(255,255,255,0.06); }
+.slot.partner { background: rgba(87,101,255,0.14); border-color: rgba(87,101,255,0.35); }
 .slot.leader { background: rgba(166,77,255,0.16); border-color: rgba(166,77,255,0.4); }
 .slot:hover { transform: translateY(-4px); }
 .slot.seller:hover { background: rgba(255,255,255,0.12); }
+.slot.partner:hover { background: rgba(87,101,255,0.22); border-color: rgba(87,101,255,0.55); }
 .slot.leader:hover { background: rgba(166,77,255,0.26); border-color: rgba(166,77,255,0.65); }
 .slot-icon { width: 34px; height: 34px; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; transition: transform 0.25s ease; }
 .slot:hover .slot-icon { transform: scale(1.12) rotate(-4deg); }
 .slot.seller .slot-icon { background: rgba(255,255,255,0.16); }
+.slot.partner .slot-icon { background: linear-gradient(92deg, #5765FF, #7C86FF); }
 .slot.leader .slot-icon { background: var(--grad); }
 .slot-role { font-size: 12px; font-weight: 600; color: #fff; }
 .slot-sub { font-size: 10.5px; color: var(--on-dark-2); margin-top: 2px; line-height: 1.4; }
 .team-card-foot { margin-top: 18px; font-size: 12px; color: var(--on-dark-2); text-align: center; }
+.team-card-mentor {
+  margin-top: 10px; font-size: 11px; font-weight: 600; color: #D58DFF; text-align: center;
+  border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 10px;
+}
 
 /* ── Value for sellers ── */
 .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 56px; }
@@ -268,17 +278,18 @@ body {
 /* ── Agenda ── */
 .timeline { display: flex; flex-direction: column; }
 .tl-item {
-  display: grid; grid-template-columns: 90px 100px 1fr; gap: 20px; align-items: center;
+  display: grid; grid-template-columns: 130px 90px 1fr; gap: 20px; align-items: center;
   padding: 18px 14px; margin: 0 -14px; border-top: 1px solid rgba(20,10,55,0.08); border-radius: 10px;
   transition: background 0.25s ease, padding-left 0.25s ease, transform 0.25s ease;
 }
 .tl-item:first-child { border-top: none; }
 .tl-item:hover { background: rgba(87,101,255,0.06); transform: translateX(4px); }
-@media (max-width: 640px) { .tl-item { grid-template-columns: 70px 1fr; } .tl-tag { display: none; } }
-.tl-time { font-size: 14px; font-weight: 700; color: var(--ink); transition: color 0.25s ease; }
+@media (max-width: 640px) { .tl-item { grid-template-columns: 1fr; gap: 6px; } .tl-tag { display: none; } }
+.tl-time { font-size: 13.5px; font-weight: 700; color: var(--ink); transition: color 0.25s ease; white-space: nowrap; }
 .tl-item:hover .tl-time { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .tl-tag { font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; text-align: center; width: fit-content; transition: transform 0.25s ease; }
 .tl-tag.build { background: rgba(166,77,255,0.1); color: #7A2ED9; }
+.tl-tag.pitch { background: rgba(87,101,255,0.12); color: #3D4FE0; }
 .tl-tag.all { background: rgba(20,10,55,0.06); color: var(--ink-2); }
 .tl-item:hover .tl-tag { transform: scale(1.06); }
 .tl-label { font-size: 15px; color: var(--ink); font-weight: 500; }
@@ -290,18 +301,39 @@ body {
   color: #fff; font-size: 12.5px; padding: 7px 14px; border-radius: 999px; margin-top: 4px;
 }
 .draft-dot { width: 6px; height: 6px; background: #FFC94D; border-radius: 50%; flex-shrink: 0; }
-.prize-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
-@media (max-width: 780px) { .prize-grid { grid-template-columns: 1fr; } }
+
+.prize-podium { display: flex; align-items: flex-end; gap: 16px; margin-bottom: 16px; }
+@media (max-width: 780px) { .prize-podium { flex-direction: column; align-items: stretch; } }
 .prize-card {
-  border: 1px dashed rgba(255,255,255,0.28); border-radius: 16px;
+  flex: 1; border: 1px dashed rgba(255,255,255,0.28); border-radius: 16px;
   padding: 28px 22px; text-align: center; display: flex; flex-direction: column; gap: 10px;
   background: rgba(255,255,255,0.03);
   transition: transform 0.3s cubic-bezier(.22,1,.36,1), border-color 0.3s ease, background 0.3s ease;
 }
 .prize-card:hover { transform: translateY(-6px); border-color: rgba(216,141,255,0.6); background: rgba(166,77,255,0.08); border-style: solid; }
+.prize-card.rank-2 { order: 1; margin-bottom: 24px; }
+.prize-card.rank-3 { order: 3; margin-bottom: 24px; }
+.prize-card.rank-1 {
+  order: 2; padding: 36px 26px; border: 1.5px solid rgba(216,141,255,0.5);
+  background: linear-gradient(180deg, rgba(166,77,255,0.16), rgba(255,255,255,0.03));
+  box-shadow: 0 0 44px rgba(166,77,255,0.22);
+}
+.prize-card.rank-1:hover { transform: translateY(-8px); box-shadow: 0 0 56px rgba(166,77,255,0.34); }
+@media (max-width: 780px) {
+  .prize-card.rank-1, .prize-card.rank-2, .prize-card.rank-3 { order: initial; margin-bottom: 0; }
+}
+.prize-badge-top {
+  align-self: center; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #fff; background: var(--grad); padding: 5px 14px; border-radius: 999px; margin-bottom: 4px;
+}
 .prize-rank { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #D58DFF; }
 .prize-slot { font-size: 22px; font-weight: 500; color: #fff; }
+.prize-card.rank-1 .prize-slot { font-size: 25px; }
 .prize-tbd { font-size: 12px; color: var(--on-dark-2); border-top: 1px solid rgba(255,255,255,0.14); padding-top: 10px; margin-top: 4px; }
+.prize-section-label {
+  font-size: 12px; font-weight: 600; color: var(--on-dark-2); text-transform: uppercase;
+  letter-spacing: 0.08em; margin: 24px 0 12px;
+}
 .prize-wide {
   border: 1px dashed rgba(255,255,255,0.28); border-radius: 16px;
   padding: 22px 26px; display: flex; align-items: center; justify-content: space-between;
@@ -375,7 +407,7 @@ body {
   <div class="wrap hero-inner">
     <div class="hero-tag">New for 2026 · Buildathon</div>
     <h1 class="hero-title">Choose your AI workflow.<br>Build <em>something real.</em></h1>
-    <p class="hero-sub">One afternoon at ShopX 2026 — six teams design, build, and demo a working AI × ecommerce workflow. No slide decks. Just shipped product, judged live.</p>
+    <p class="hero-sub">One afternoon at ShopX 2026 — six teams design, build, and pitch a working AI × ecommerce workflow live to a judging panel.</p>
     <p class="hero-meta"><strong>September 17, 2026</strong> &nbsp;·&nbsp; New World Saigon Hotel &nbsp;·&nbsp; Afternoon session</p>
     <div class="cta-row">
       <a href="#" class="btn btn-primary">Apply as a seller</a>
@@ -396,7 +428,8 @@ body {
     <div class="band-header reveal">
       <div class="eyebrow">01 — What is it</div>
       <h2 class="band-title">What is the Buildathon<br>at ShopX 2026?</h2>
-      <p class="band-sub">Right after the morning keynotes end, ShopX turns into a build floor. Six teams get one afternoon to design, build, and demo a real AI workflow for ecommerce — then pitch it live to a panel of operators and investors.</p>
+      <p class="band-sub">Right after the morning keynotes end, ShopX turns into a build floor. Six teams get one afternoon to design, build, and pitch a real AI workflow for ecommerce — live, to a panel of operators and investors.</p>
+      <p class="band-note">In short: pick a track, get matched into a team led by a Shopify app partner, and spend the afternoon turning a real idea into a working AI product — no build experience required.</p>
     </div>
     <div class="feat-grid" data-stagger>
       <div class="feat-card reveal">
@@ -411,8 +444,8 @@ body {
       </div>
       <div class="feat-card reveal">
         <div class="feat-pill">Live judging</div>
-        <div class="feat-title">3 minutes, no slides</div>
-        <div class="feat-body">Each team demos live to a judging panel at the Demo Expo. Scored on the spot, awards announced the same day.</div>
+        <div class="feat-title">5-minute pitch</div>
+        <div class="feat-body">Each team pitches live to a judging panel for 5 minutes. Scored on the spot, awards announced the same day.</div>
       </div>
     </div>
   </div>
@@ -424,13 +457,13 @@ body {
     <div class="band-header reveal">
       <div class="eyebrow">02 — Team format</div>
       <h2 class="band-title">6 teams. <em>4 builders each.</em></h2>
-      <p class="band-sub">Every team pairs the people who feel the problem with the people who can build the fix — so the workflow gets shaped by a real seller pain point from hour one.</p>
+      <p class="band-sub">Every team pairs attendee sellers with Shopify app partners invited by ShopX — one leading the build, plus mentors circulating the floor for everyone.</p>
     </div>
     <div class="team-layout" data-stagger>
       <div class="reveal">
         <div class="team-copy-title">How a team comes together</div>
-        <p class="team-copy-body">Each of the 6 teams is built from attendee sellers and partner-side builders — matched ahead of the sprint so everyone walks in knowing their role.</p>
-        <p class="team-copy-body">The 2 app partner members lead the build — they set technical direction and keep the sprint moving toward a working demo by 4 PM.</p>
+        <p class="team-copy-body">Each of the 6 teams pairs 2 attendee sellers with 2 app partners. "App partner" here means builders from Shopify app companies that ShopX invited to lead — not attendees who signed up themselves.</p>
+        <p class="team-copy-body">Only one of the two app partners leads the team as technical lead; the other builds alongside. On top of that, 2–3 mentors circulate across all 6 teams throughout the afternoon for extra guidance when a team gets stuck.</p>
         <div class="team-note">Team matching happens ahead of the event based on track interest and company fit.</div>
       </div>
       <div class="team-card reveal">
@@ -445,9 +478,10 @@ body {
           <div class="slot seller"><div class="slot-icon">S</div><div class="slot-role">Seller</div><div class="slot-sub">Attendee</div></div>
           <div class="slot seller"><div class="slot-icon">S</div><div class="slot-role">Seller</div><div class="slot-sub">Attendee</div></div>
           <div class="slot leader"><div class="slot-icon">P</div><div class="slot-role">App Partner</div><div class="slot-sub">Team lead</div></div>
-          <div class="slot leader"><div class="slot-icon">P</div><div class="slot-role">App Partner</div><div class="slot-sub">Team lead</div></div>
+          <div class="slot partner"><div class="slot-icon">P</div><div class="slot-role">App Partner</div><div class="slot-sub">Builder</div></div>
         </div>
-        <div class="team-card-foot">2 sellers bring the problem · 2 app partners lead the build</div>
+        <div class="team-card-foot">2 sellers bring the problem · 1 app partner leads · 1 app partner builds</div>
+        <div class="team-card-mentor">+ 2–3 mentors circulating across all 6 teams, all afternoon</div>
       </div>
     </div>
   </div>
@@ -582,8 +616,8 @@ body {
         </div>
         <div class="journey-step reveal">
           <div class="journey-dot">3</div>
-          <div class="journey-step-title">Demo it live</div>
-          <div class="journey-step-body">3 minutes, real product running, no slides.</div>
+          <div class="journey-step-title">Pitch it live</div>
+          <div class="journey-step-body">5 minutes, real product running, in front of the judges.</div>
         </div>
         <div class="journey-step reveal">
           <div class="journey-dot">4</div>
@@ -605,34 +639,24 @@ body {
     </div>
     <div class="timeline" data-stagger>
       <div class="tl-item reveal">
-        <div class="tl-time">13:15</div>
+        <div class="tl-time">13:15 – 13:30</div>
         <div class="tl-tag build">Build</div>
-        <div class="tl-label">Buildathon kickoff — rules, track assignments, team check-in</div>
+        <div class="tl-label">Buildathon Kickoff — rules, track assignments, team check-in</div>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-time">13:30</div>
+        <div class="tl-time">13:30 – 15:00</div>
         <div class="tl-tag build">Build</div>
-        <div class="tl-label">Sprint 1–2 — all 6 teams build in parallel</div>
+        <div class="tl-label">Final Build &amp; Polish — all 6 teams build in parallel</div>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-time">14:00</div>
-        <div class="tl-tag build">Build</div>
-        <div class="tl-label">Sprint 3–4 — integrate and polish</div>
+        <div class="tl-time">15:15 – 16:30</div>
+        <div class="tl-tag pitch">Pitch</div>
+        <div class="tl-label">Team Pitching (Presentation) &amp; Q&amp;A session — 5 min per team, live to the judges</div>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-time">16:00</div>
+        <div class="tl-time">16:30 – 17:00</div>
         <div class="tl-tag all">All</div>
-        <div class="tl-label">Demo Expo + judging — 3 min live demo per team, no slides</div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-time">16:40</div>
-        <div class="tl-tag all">All</div>
-        <div class="tl-label">Awards — Best Workflow + Best Output per track</div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-time">17:00</div>
-        <div class="tl-tag all">All</div>
-        <div class="tl-label">Wrap-up &amp; closing</div>
+        <div class="tl-label">Awards &amp; Wrap-up</div>
       </div>
     </div>
   </div>
@@ -643,27 +667,29 @@ body {
   <div class="wrap">
     <div class="band-header reveal">
       <div class="eyebrow">06 — Prizes</div>
-      <h2 class="band-title">Prizes</h2>
-      <p class="band-sub">Layout only — prize tiers &amp; values are still being finalized.</p>
-      <div class="draft-flag"><div class="draft-dot"></div> Wireframe — values TBD, structure to be confirmed</div>
+      <h2 class="band-title">Prizes &amp; <em>recognition</em></h2>
+      <p class="band-sub">Podium layout below — final prize tiers and values are still being locked in with partners.</p>
+      <div class="draft-flag"><div class="draft-dot"></div> Wireframe — layout final, values &amp; tiers coming soon</div>
     </div>
-    <div class="prize-grid" data-stagger>
-      <div class="prize-card reveal">
-        <div class="prize-rank">1st place</div>
-        <div class="prize-slot">Best Workflow</div>
-        <div class="prize-tbd">Prize value — TBD</div>
-      </div>
-      <div class="prize-card reveal">
+    <div class="prize-podium" data-stagger>
+      <div class="prize-card reveal rank-2">
         <div class="prize-rank">2nd place</div>
         <div class="prize-slot">Runner-up</div>
         <div class="prize-tbd">Prize value — TBD</div>
       </div>
-      <div class="prize-card reveal">
+      <div class="prize-card reveal rank-1">
+        <div class="prize-badge-top">🏆 Top prize</div>
+        <div class="prize-rank">1st place</div>
+        <div class="prize-slot">Best Workflow</div>
+        <div class="prize-tbd">Prize value — TBD</div>
+      </div>
+      <div class="prize-card reveal rank-3">
         <div class="prize-rank">3rd place</div>
         <div class="prize-slot">Runner-up</div>
         <div class="prize-tbd">Prize value — TBD</div>
       </div>
     </div>
+    <div class="prize-section-label">Track award</div>
     <div class="prize-wide reveal">
       <div>
         <div class="prize-wide-name">Best Output — per track</div>
@@ -686,8 +712,8 @@ body {
       </div>
       <div class="reveal">
         <div class="eyebrow" style="display:inline-block; background: var(--light); color: var(--ink-2); border: 1px solid rgba(20,10,55,0.1); margin-bottom: 14px;">07 — Certificate</div>
-        <div class="cert-copy-title">Everyone builds. Everyone gets recognized.</div>
-        <p class="cert-copy-body">Win or not, every Buildathon participant — every seller and every app partner across all 6 teams — receives an official <strong>ShopX 2026 Buildathon Certificate of Participation</strong>. Awards go to the top teams; recognition goes to everyone who showed up to build.</p>
+        <div class="cert-copy-title">Win or not, you walk away with proof.</div>
+        <p class="cert-copy-body">Every Buildathon participant — every seller and every app partner across all 6 teams — receives an official <strong>ShopX 2026 Buildathon Certificate of Participation</strong>. Awards go to the top teams; recognition goes to everyone who showed up to build.</p>
       </div>
     </div>
   </div>
