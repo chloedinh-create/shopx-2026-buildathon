@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ShopX 2026 — AI Buildathon</title>
-<meta name="description" content="6 teams. 2 AI workflow clusters. 1 afternoon to build, demo, and learn alongside leading AI and Shopify partners. September 17, 2026 — New World Saigon Hotel, HCMC.">
+<meta name="description" content="6 teams. 8 open build tracks. 1 afternoon to build, demo, and learn alongside leading AI and Shopify partners. September 17, 2026 — New World Saigon Hotel, HCMC.">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -88,7 +88,7 @@ body {
 .reveal.in-view { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; opacity: 1; transform: none; }
-  .btn, .feat-card, .acc, .f-card, .value-card, .prize-card, .prize-wide, .ag-item, .cert-mock, .trk-row, .team-chip, .org-chip { transition: none !important; }
+  .btn, .feat-card, .track-card, .f-card, .value-card, .prize-card, .prize-wide, .ag-item, .cert-mock, .team-chip, .org-chip { transition: none !important; }
 }
 
 /* ── Section shell ── */
@@ -184,35 +184,26 @@ body {
 }
 .team-chip:hover { background: rgba(255,255,255,0.16); color: #fff; transform: translateY(-2px); }
 
-/* ── Tracks: accordion ── */
-.clusters { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; }
-@media (max-width: 780px) { .clusters { grid-template-columns: 1fr; } }
-.acc {
-  background: var(--white); border: 1px solid rgba(20,10,55,0.1); border-radius: 16px; overflow: hidden;
-  box-shadow: 0 1px 2px rgba(20,10,55,0.04); transition: box-shadow 0.3s ease, border-color 0.3s ease;
+/* ── Tracks: open grid ── */
+.track-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 960px) { .track-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .track-grid { grid-template-columns: 1fr; } }
+.track-card {
+  background: var(--white); border: 1px solid rgba(20,10,55,0.08); border-radius: 14px;
+  padding: 22px 20px; display: flex; flex-direction: column; gap: 8px;
+  transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
-.acc:hover { border-color: rgba(166,77,255,0.3); box-shadow: 0 14px 34px rgba(87,101,255,0.12); }
-.acc summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 16px; padding: 20px 24px; }
-.acc summary::-webkit-details-marker { display: none; }
-.acc summary:hover { background: var(--light); }
-.acc-tag { flex-shrink: 0; font-size: 12px; font-weight: 600; color: var(--ink); background: var(--light); padding: 5px 12px; border-radius: 999px; }
-.acc-sum-title { flex: 1; }
-.acc-sum-title h3 { font-size: 20px; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; margin: 0; }
-.acc-sum-title p { font-size: 13px; color: var(--ink-2); margin-top: 2px; }
-.acc-chev { flex-shrink: 0; font-size: 12px; color: var(--ink-2); transition: transform 0.3s ease; }
-.acc[open] .acc-chev { transform: rotate(180deg); }
-.acc-body { border-top: 1px solid rgba(20,10,55,0.08); padding: 4px 24px 12px; }
-.trk-row {
-  display: flex; gap: 14px; align-items: flex-start; padding: 14px 8px;
-  margin: 0 -8px; border-top: 1px solid rgba(20,10,55,0.06); border-radius: 8px;
-  transition: background 0.25s ease, transform 0.25s ease;
+.track-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(87,101,255,0.14); border-color: rgba(166,77,255,0.3); }
+.track-card-num { font-size: 12px; font-weight: 700; color: var(--ink-2); letter-spacing: 0.06em; transition: color 0.25s ease; }
+.track-card:hover .track-card-num { color: #7A2ED9; }
+.track-card-name { font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+.track-card-desc { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; }
+.tracks-note {
+  text-align: center; font-size: 12.5px; color: var(--ink-2);
+  border: 1px dashed rgba(20,10,55,0.18); border-radius: 12px; padding: 14px; background: var(--white);
+  margin-top: 20px; transition: border-color 0.25s ease, background 0.25s ease;
 }
-.trk-row:first-child { border-top: none; }
-.trk-row:hover { background: var(--light); transform: translateX(4px); }
-.trk-num { flex-shrink: 0; font-size: 12px; font-weight: 700; color: var(--ink-2); padding-top: 2px; transition: color 0.25s ease; }
-.trk-row:hover .trk-num { color: #7A2ED9; }
-.trk-name { font-size: 15px; font-weight: 600; color: var(--ink); }
-.trk-desc { font-size: 12.5px; color: var(--ink-2); margin-top: 2px; line-height: 1.5; }
+.tracks-note:hover { border-color: rgba(166,77,255,0.4); background: var(--light); }
 
 /* ── Value for sellers ── */
 .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -375,7 +366,7 @@ body {
   <div class="wrap hero-inner">
     <div class="hero-tag">ShopX 2026 · AI Buildathon</div>
     <h1 class="hero-title">Choose your AI workflow.<br>Build <em>something real.</em></h1>
-    <p class="hero-sub">6 teams. 2 AI workflow clusters. 1 afternoon to build, demo, and learn alongside leading AI and Shopify partners.</p>
+    <p class="hero-sub">6 teams. 8 open build tracks. 1 afternoon to build, demo, and learn alongside leading AI and Shopify partners.</p>
     <p class="hero-meta">📅&nbsp;September 17, 2026 &nbsp;·&nbsp; 📍&nbsp;New World Saigon Hotel, HCMC &nbsp;·&nbsp; 🕐&nbsp;13:15 – 17:00</p>
     <div class="cta-row">
       <a href="https://2026.shopxevent.com/" class="btn btn-primary">Apply as a Seller</a>
@@ -457,44 +448,52 @@ body {
     <div class="band-header reveal">
       <div class="eyebrow">03 — Tracks</div>
       <h2 class="band-title">Pick your track.<br><em>Build it end to end.</em></h2>
-      <p class="band-sub">Two AI workflow clusters, eight tracks. Each team picks one and builds it out alongside leading AI and Shopify partners.</p>
+      <p class="band-sub">Eight open tracks — no fixed clusters. Each team picks one and builds it out alongside leading AI and Shopify partners.</p>
     </div>
 
-    <div class="clusters reveal">
-      <details class="acc" open>
-        <summary>
-          <span class="acc-tag">5 tracks</span>
-          <span class="acc-sum-title">
-            <h3>AI App Sprint</h3>
-            <p>End-to-end AI solution packages for real ecommerce challenges.</p>
-          </span>
-          <span class="acc-chev">▾</span>
-        </summary>
-        <div class="acc-body">
-          <div class="trk-row"><div class="trk-num">01</div><div><div class="trk-name">Market Research</div><div class="trk-desc">Turn market data into opportunities with an AI research solution.</div></div></div>
-          <div class="trk-row"><div class="trk-num">02</div><div><div class="trk-name">Product Offer</div><div class="trk-desc">Shape the insights into validated, high-converting offers.</div></div></div>
-          <div class="trk-row"><div class="trk-num">03</div><div><div class="trk-name">Store Migration</div><div class="trk-desc">Migrate, optimize and relaunch with an AI-powered workflow.</div></div></div>
-          <div class="trk-row"><div class="trk-num">04</div><div><div class="trk-name">Operations Management</div><div class="trk-desc">Connect key workflows to streamline the whole operations.</div></div></div>
-          <div class="trk-row"><div class="trk-num">05</div><div><div class="trk-name">Agent Customer Support</div><div class="trk-desc">Complete the package with a scalable AI support system.</div></div></div>
-        </div>
-      </details>
-
-      <details class="acc" open>
-        <summary>
-          <span class="acc-tag">3 tracks</span>
-          <span class="acc-sum-title">
-            <h3>Build AI Workflow with Hermes</h3>
-            <p>One all-in-one AI workflow for complex ecommerce processes.</p>
-          </span>
-          <span class="acc-chev">▾</span>
-        </summary>
-        <div class="acc-body">
-          <div class="trk-row"><div class="trk-num">01</div><div><div class="trk-name">Storefront &amp; CRO</div><div class="trk-desc">Connect storefront creation, testing and CRO optimization.</div></div></div>
-          <div class="trk-row"><div class="trk-num">02</div><div><div class="trk-name">Creative &amp; UGC</div><div class="trk-desc">Automate the flow from product data to ready-to-use creatives.</div></div></div>
-          <div class="trk-row"><div class="trk-num">03</div><div><div class="trk-name">POD Studio</div><div class="trk-desc">Link design, product creation and publishing in one click.</div></div></div>
-        </div>
-      </details>
+    <div class="track-grid" data-stagger>
+      <div class="track-card reveal">
+        <div class="track-card-num">01</div>
+        <div class="track-card-name">UGC</div>
+        <div class="track-card-desc">Turn product data into scroll-stopping short-form video content.</div>
+      </div>
+      <div class="track-card reveal">
+        <div class="track-card-num">02</div>
+        <div class="track-card-name">Creative Flow</div>
+        <div class="track-card-desc">Automate the pipeline from product data to ready-to-use ad creatives.</div>
+      </div>
+      <div class="track-card reveal">
+        <div class="track-card-num">03</div>
+        <div class="track-card-name">CS Workflow</div>
+        <div class="track-card-desc">Build an AI-powered customer support flow that scales.</div>
+      </div>
+      <div class="track-card reveal">
+        <div class="track-card-num">04</div>
+        <div class="track-card-name">AI Workflow</div>
+        <div class="track-card-desc">Design a specific AI-native workflow for your own store process.</div>
+      </div>
+      <div class="track-card reveal">
+        <div class="track-card-num">05</div>
+        <div class="track-card-name">POD Workflow</div>
+        <div class="track-card-desc">Link design, product creation, and publishing in one click.</div>
+      </div>
+      <div class="track-card reveal">
+        <div class="track-card-num">06</div>
+        <div class="track-card-name">Retention Workflow</div>
+        <div class="track-card-desc">Build an AI flow that brings customers back and keeps them buying.</div>
+      </div>
+      <div class="track-card reveal">
+        <div class="track-card-num">07</div>
+        <div class="track-card-name">Product Customization Studio</div>
+        <div class="track-card-desc">Let shoppers build their own product, right on your storefront.</div>
+      </div>
+      <div class="track-card reveal">
+        <div class="track-card-num">08</div>
+        <div class="track-card-name">Personalized Offer Engine</div>
+        <div class="track-card-desc">Turn product &amp; customer data into a personalized offer, shown live on your landing page.</div>
+      </div>
     </div>
+    <div class="tracks-note reveal">Track names are set — which partners support which track is still being finalized.</div>
   </div>
 </section>
 
