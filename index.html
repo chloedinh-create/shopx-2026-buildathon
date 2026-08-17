@@ -183,6 +183,11 @@ body {
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 .team-chip:hover { background: rgba(255,255,255,0.16); color: #fff; transform: translateY(-2px); }
+.team-chip.highlight {
+  background: linear-gradient(180deg, var(--card-a), var(--card-b));
+  border: 1px solid rgba(216,141,255,0.5); color: #fff; box-shadow: 0 0 0 rgba(166,77,255,0);
+}
+.team-chip.highlight:hover { background: linear-gradient(180deg, var(--card-a), var(--card-b)); box-shadow: 0 8px 24px rgba(166,77,255,0.45); transform: translateY(-2px) scale(1.03); }
 
 /* ── Tracks: open grid ── */
 .track-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -364,11 +369,10 @@ body {
     <p class="hero-meta">📅&nbsp;September 17, 2026 &nbsp;·&nbsp; 📍&nbsp;New World Saigon Hotel, HCMC &nbsp;·&nbsp; 🕐&nbsp;13:15 – 17:00</p>
     <div class="cta-row">
       <a href="https://2026.shopxevent.com/" class="btn btn-primary">Apply as a Seller</a>
-      <a href="https://2026.shopxevent.com/" class="btn btn-ghost-dark">Apply as an App Partner</a>
     </div>
     <div class="kpi-row">
       <div class="kpi-item"><div class="kpi-val">6</div><div class="kpi-label">teams</div></div>
-      <div class="kpi-item"><div class="kpi-val">24</div><div class="kpi-label">builders</div></div>
+      <div class="kpi-item"><div class="kpi-val">1</div><div class="kpi-label">afternoon</div></div>
       <div class="kpi-item"><div class="kpi-val">8</div><div class="kpi-label">tracks</div></div>
       <div class="kpi-item"><div class="kpi-val">100%</div><div class="kpi-label">get certified</div></div>
     </div>
@@ -408,19 +412,19 @@ body {
   <div class="wrap">
     <div class="band-header reveal">
       <div class="eyebrow">02 — Teams</div>
-      <h2 class="band-title">6 teams.<br><em>4 builders each.</em></h2>
+      <h2 class="band-title">6 teams.<br><em>Sellers + app partners.</em></h2>
       <p class="band-sub">You bring the problem. Your app partners bring the stack. Ship it together in one afternoon.</p>
     </div>
 
     <div class="formula reveal">
       <div class="f-card">
         <div class="f-avs"><div class="f-av seller">S</div><div class="f-av seller">S</div></div>
-        <div class="f-label">2 Sellers<small>That's you — bring a real store problem</small></div>
+        <div class="f-label">Sellers<small>That's you — bring a real store problem</small></div>
       </div>
       <div class="f-op">+</div>
       <div class="f-card">
         <div class="f-avs"><div class="f-av partner">P</div><div class="f-av partner">P</div></div>
-        <div class="f-label">2 App Partners<small>Your build crew — they own the stack</small></div>
+        <div class="f-label">App Partners<small>Your build crew — they own the stack</small></div>
       </div>
       <div class="f-op">=</div>
       <div class="f-card f-result">
@@ -432,6 +436,7 @@ body {
       <div class="team-chip">Matched pre-event</div>
       <div class="team-chip">No coding required</div>
       <div class="team-chip">You arrive knowing your team &amp; brief</div>
+      <div class="team-chip highlight">✨ Mentors roaming the floor, all afternoon</div>
     </div>
   </div>
 </section>
@@ -624,7 +629,6 @@ body {
     <p class="band-sub">Sellers bring the problem. App partners power the build.</p>
     <div class="cta-row">
       <a href="https://2026.shopxevent.com/" class="btn btn-primary">Apply as a Seller</a>
-      <a href="https://2026.shopxevent.com/" class="btn btn-ghost-dark">Apply as an App Partner</a>
     </div>
     <div class="org-strip">
       <div class="org-chip">GemPages · Organizer &amp; host</div>
