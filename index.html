@@ -333,6 +333,82 @@ body {
 .foot-links a:hover::after { width: 100%; }
 .foot-rule { height: 1px; background: rgba(255,255,255,0.08); margin: 24px 0; }
 .foot-bot { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 12px; color: var(--on-dark-2); }
+
+button, input, select, textarea { font-family: inherit; }
+.js-open-apply { cursor: pointer; }
+
+/* ── Apply modal ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center;
+  padding: 24px; background: rgba(9,0,20,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.is-open { opacity: 1; visibility: visible; }
+.modal-card {
+  position: relative; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto;
+  background: linear-gradient(180deg, var(--card-a), var(--card-b)); border: 1px solid var(--card-bdr);
+  border-radius: 20px; padding: 36px 32px; color: #fff;
+  transform: translateY(24px) scale(0.98); opacity: 0;
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1), opacity 0.35s ease;
+}
+.modal-overlay.is-open .modal-card { transform: translateY(0) scale(1); opacity: 1; }
+.modal-close {
+  position: absolute; top: 20px; right: 20px; width: 32px; height: 32px; border-radius: 999px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); color: #fff;
+  font-size: 16px; line-height: 1; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease;
+}
+.modal-close:hover { background: rgba(255,255,255,0.18); transform: rotate(90deg); }
+.modal-header { margin-bottom: 22px; padding-right: 24px; }
+.modal-title { font-size: 24px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 8px; }
+.modal-lede { font-size: 14.5px; color: var(--on-dark-2); line-height: 1.55; }
+
+.modal-form { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
+.f-group { display: flex; flex-direction: column; gap: 8px; }
+.f-group-label { font-size: 13px; font-weight: 600; color: #fff; }
+.f-group-label .opt { font-weight: 400; color: var(--on-dark-2); text-transform: none; letter-spacing: 0; }
+.f-help { font-size: 12px; color: var(--on-dark-2); line-height: 1.5; }
+
+.f-input, .f-select, .f-textarea {
+  width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px; padding: 12px 14px; font-size: 14px; color: #fff;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.f-input::placeholder, .f-textarea::placeholder { color: rgba(255,255,255,0.35); }
+.f-input:focus, .f-select:focus, .f-textarea:focus {
+  outline: none; border-color: rgba(166,77,255,0.6); background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 0 3px rgba(166,77,255,0.18);
+}
+.f-textarea { resize: vertical; min-height: 88px; line-height: 1.5; }
+.f-select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.6) 50%), linear-gradient(135deg, rgba(255,255,255,0.6) 50%, transparent 50%);
+  background-position: calc(100% - 20px) center, calc(100% - 15px) center;
+  background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; padding-right: 40px;
+}
+.f-select option { color: #140A37; }
+
+.f-radio-row { display: flex; gap: 10px; }
+.f-radio {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.05); font-size: 13.5px; color: var(--on-dark-2); cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.f-radio input { accent-color: #A64DFF; }
+.f-radio:hover { border-color: rgba(166,77,255,0.4); }
+.f-radio.is-checked { border-color: rgba(166,77,255,0.6); background: rgba(166,77,255,0.14); color: #fff; }
+
+.modal-submit { width: 100%; margin-top: 4px; }
+
+.modal-success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 12px 0 4px; }
+.modal-success.is-shown { display: flex; }
+.modal-success .cert-seal { margin-bottom: 4px; }
+.modal-success h3 { font-size: 21px; font-weight: 500; }
+.modal-success p { font-size: 14px; color: var(--on-dark-2); line-height: 1.55; max-width: 400px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay, .modal-card, .modal-close { transition: none !important; }
+}
 </style>
 </head>
 <body>
@@ -347,7 +423,7 @@ body {
       <li><a href="#schedule">Schedule</a></li>
       <li><a href="#prizes">Prizes</a></li>
     </ul>
-    <a href="https://2026.shopxevent.com/" class="btn btn-primary" style="padding:9px 18px; font-size:12.5px;">Apply as a Seller</a>
+    <button type="button" class="btn btn-primary js-open-apply" style="padding:9px 18px; font-size:12.5px;">Apply as a Seller</button>
   </div>
 </nav>
 
@@ -360,7 +436,7 @@ body {
     <p class="hero-sub">6 teams. 8 open build tracks. 1 afternoon to build, demo, and learn alongside leading AI and Shopify partners.</p>
     <p class="hero-meta">📅&nbsp;September 17, 2026 &nbsp;·&nbsp; 📍&nbsp;New World Saigon Hotel, HCMC &nbsp;·&nbsp; 🕐&nbsp;13:15 – 17:00</p>
     <div class="cta-row">
-      <a href="https://2026.shopxevent.com/" class="btn btn-primary">Apply as a Seller</a>
+      <button type="button" class="btn btn-primary js-open-apply">Apply as a Seller</button>
     </div>
     <div class="kpi-row">
       <div class="kpi-item"><div class="kpi-val">6</div><div class="kpi-label">teams</div></div>
@@ -614,7 +690,7 @@ body {
     <h2 class="band-title">Be in the room,<br><em>then build in it.</em></h2>
     <p class="band-sub">Sellers bring the problem. Mentors power the build.</p>
     <div class="cta-row">
-      <a href="https://2026.shopxevent.com/" class="btn btn-primary">Apply as a Seller</a>
+      <button type="button" class="btn btn-primary js-open-apply">Apply as a Seller</button>
     </div>
     <div class="org-strip">
       <div class="org-chip">GemPages · Organizer &amp; host</div>
@@ -644,6 +720,81 @@ body {
   </div>
 </footer>
 
+<!-- ══ APPLY AS A SELLER — MODAL ══ -->
+<div class="modal-overlay" id="applyModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="applyModalTitle">
+    <button type="button" class="modal-close" id="applyModalClose" aria-label="Close">✕</button>
+
+    <div id="applyModalIntro">
+      <div class="modal-header">
+        <h3 class="modal-title" id="applyModalTitle">Apply as a Seller</h3>
+        <p class="modal-lede">Tell us what you want to build. We'll use your answers to match you with the right track, team, and mentors.</p>
+      </div>
+
+      <form class="modal-form" id="applyForm" novalidate>
+        <div class="f-group">
+          <label class="f-group-label" for="af-name">Full name</label>
+          <input class="f-input" type="text" id="af-name" name="fullName" required autocomplete="name">
+        </div>
+
+        <div class="f-group">
+          <label class="f-group-label" for="af-email">Email address</label>
+          <input class="f-input" type="email" id="af-email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="f-group">
+          <label class="f-group-label" for="af-store">Store / brand name</label>
+          <input class="f-input" type="text" id="af-store" name="storeName" required autocomplete="organization">
+        </div>
+
+        <div class="f-group">
+          <label class="f-group-label" for="af-url">Store URL <span class="opt">(if available)</span></label>
+          <input class="f-input" type="url" id="af-url" name="storeUrl" placeholder="https://">
+        </div>
+
+        <div class="f-group">
+          <span class="f-group-label">Will you be able to attend in person in Ho Chi Minh City on September 17, 2026?</span>
+          <div class="f-radio-row">
+            <label class="f-radio"><input type="radio" name="attend" value="yes" required> Yes</label>
+            <label class="f-radio"><input type="radio" name="attend" value="no" required> No</label>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label class="f-group-label" for="af-track">Which track best matches the problem you want to solve?</label>
+          <select class="f-select" id="af-track" name="track" required>
+            <option value="" disabled selected>Select a track</option>
+            <option value="UGC">UGC — short-form video content</option>
+            <option value="Creative Flow">Creative Flow — ad creatives</option>
+            <option value="CS Workflow">CS Workflow — customer support</option>
+            <option value="AI Workflow">AI Workflow — AI-powered store processes</option>
+            <option value="POD Workflow">POD Workflow — product design and publishing</option>
+            <option value="Retention Workflow">Retention Workflow — repeat purchases and re-engagement</option>
+            <option value="Product Customization Studio">Product Customization Studio — personalized products</option>
+            <option value="Personalized Offer Engine">Personalized Offer Engine — personalized offers and CRO</option>
+            <option value="Open Topic / Other">Open Topic / Other</option>
+          </select>
+          <p class="f-help">Choose the one track that best matches the problem you want to explore with your team and mentors.</p>
+        </div>
+
+        <div class="f-group">
+          <label class="f-group-label" for="af-challenge">What store challenge would you like your team to solve?</label>
+          <textarea class="f-textarea" id="af-challenge" name="challenge" required rows="4"></textarea>
+          <p class="f-help">Tell us what is happening today, who it affects, and what outcome you would like to improve.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary modal-submit">Submit Application</button>
+      </form>
+    </div>
+
+    <div class="modal-success" id="applyModalSuccess">
+      <div class="cert-seal">✦</div>
+      <h3>You're in.</h3>
+      <p>Thanks — we'll be in touch to confirm your track, team, and mentors ahead of September 17.</p>
+    </div>
+  </div>
+</div>
+
 <script>
 document.querySelectorAll('[data-stagger]').forEach((group) => {
   Array.from(group.children).forEach((child, i) => {
@@ -665,6 +816,68 @@ if ('IntersectionObserver' in window) {
 } else {
   revealEls.forEach((el) => el.classList.add('in-view'));
 }
+
+/* ── Apply modal ── */
+(function () {
+  const overlay = document.getElementById('applyModal');
+  const closeBtn = document.getElementById('applyModalClose');
+  const intro = document.getElementById('applyModalIntro');
+  const success = document.getElementById('applyModalSuccess');
+  const form = document.getElementById('applyForm');
+  let lastFocused = null;
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    intro.style.display = '';
+    success.classList.remove('is-shown');
+    form.reset();
+    document.querySelectorAll('.f-radio').forEach((r) => r.classList.remove('is-checked'));
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const firstField = form.querySelector('input, select, textarea');
+    if (firstField) firstField.focus();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('.js-open-apply').forEach((btn) => {
+    btn.addEventListener('click', openModal);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+
+  document.querySelectorAll('.f-radio input[type="radio"]').forEach((input) => {
+    input.addEventListener('change', () => {
+      const name = input.name;
+      document.querySelectorAll(`input[name="${name}"]`).forEach((sibling) => {
+        sibling.closest('.f-radio').classList.toggle('is-checked', sibling.checked);
+      });
+    });
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    // TODO: wire this to a real endpoint (GemPages form action, Zapier webhook, Google Sheet, etc.)
+    // Currently the submission only logs to console — no data is stored or sent anywhere yet.
+    const data = Object.fromEntries(new FormData(form).entries());
+    console.log('Buildathon seller application:', data);
+
+    intro.style.display = 'none';
+    success.classList.add('is-shown');
+  });
+})();
 </script>
 </body>
 </html>
