@@ -363,6 +363,8 @@ button, input, select, textarea { font-family: inherit; }
 .modal-lede { font-size: 14.5px; color: var(--on-dark-2); line-height: 1.55; }
 
 .modal-form { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 480px) { .f-row { grid-template-columns: 1fr; } }
 .f-group { display: flex; flex-direction: column; gap: 8px; }
 .f-group-label { font-size: 13px; font-weight: 600; color: #fff; }
 .f-group-label .opt { font-weight: 400; color: var(--on-dark-2); text-transform: none; letter-spacing: 0; }
@@ -386,17 +388,6 @@ button, input, select, textarea { font-family: inherit; }
   background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; padding-right: 40px;
 }
 .f-select option { color: #140A37; }
-
-.f-radio-row { display: flex; gap: 10px; }
-.f-radio {
-  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 11px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.16);
-  background: rgba(255,255,255,0.05); font-size: 13.5px; color: var(--on-dark-2); cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-.f-radio input { accent-color: #A64DFF; }
-.f-radio:hover { border-color: rgba(166,77,255,0.4); }
-.f-radio.is-checked { border-color: rgba(166,77,255,0.6); background: rgba(166,77,255,0.14); color: #fff; }
 
 .modal-submit { width: 100%; margin-top: 4px; }
 
@@ -732,31 +723,25 @@ button, input, select, textarea { font-family: inherit; }
       </div>
 
       <form class="modal-form" id="applyForm" novalidate>
-        <div class="f-group">
-          <label class="f-group-label" for="af-name">Full name</label>
-          <input class="f-input" type="text" id="af-name" name="fullName" required autocomplete="name">
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-group-label" for="af-name">Full name</label>
+            <input class="f-input" type="text" id="af-name" name="fullName" required autocomplete="name">
+          </div>
+          <div class="f-group">
+            <label class="f-group-label" for="af-email">Email address</label>
+            <input class="f-input" type="email" id="af-email" name="email" required autocomplete="email">
+          </div>
         </div>
 
-        <div class="f-group">
-          <label class="f-group-label" for="af-email">Email address</label>
-          <input class="f-input" type="email" id="af-email" name="email" required autocomplete="email">
-        </div>
-
-        <div class="f-group">
-          <label class="f-group-label" for="af-store">Store / brand name</label>
-          <input class="f-input" type="text" id="af-store" name="storeName" required autocomplete="organization">
-        </div>
-
-        <div class="f-group">
-          <label class="f-group-label" for="af-url">Store URL <span class="opt">(if available)</span></label>
-          <input class="f-input" type="url" id="af-url" name="storeUrl" placeholder="https://">
-        </div>
-
-        <div class="f-group">
-          <span class="f-group-label">Will you be able to attend in person in Ho Chi Minh City on September 17, 2026?</span>
-          <div class="f-radio-row">
-            <label class="f-radio"><input type="radio" name="attend" value="yes" required> Yes</label>
-            <label class="f-radio"><input type="radio" name="attend" value="no" required> No</label>
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-group-label" for="af-store">Store / brand name</label>
+            <input class="f-input" type="text" id="af-store" name="storeName" required autocomplete="organization">
+          </div>
+          <div class="f-group">
+            <label class="f-group-label" for="af-url">Store URL <span class="opt">(if available)</span></label>
+            <input class="f-input" type="url" id="af-url" name="storeUrl" placeholder="https://">
           </div>
         </div>
 
@@ -831,7 +816,6 @@ if ('IntersectionObserver' in window) {
     intro.style.display = '';
     success.classList.remove('is-shown');
     form.reset();
-    document.querySelectorAll('.f-radio').forEach((r) => r.classList.remove('is-checked'));
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -854,15 +838,6 @@ if ('IntersectionObserver' in window) {
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
-  });
-
-  document.querySelectorAll('.f-radio input[type="radio"]').forEach((input) => {
-    input.addEventListener('change', () => {
-      const name = input.name;
-      document.querySelectorAll(`input[name="${name}"]`).forEach((sibling) => {
-        sibling.closest('.f-radio').classList.toggle('is-checked', sibling.checked);
-      });
-    });
   });
 
   form.addEventListener('submit', (e) => {
