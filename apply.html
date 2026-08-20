@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply as a Seller — ShopX 2026 Buildathon</title>
+<meta name="description" content="Apply as a seller for the ShopX 2026 Buildathon — tell us what you want to build and we'll match you with the right track, team, and mentors.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --dark:       #160236;
+  --card-a:     #1C0345;
+  --card-b:     #35146A;
+  --card-bdr:   rgba(255,255,255,0.16);
+  --on-dark-2:  #C7C7C7;
+  --grad:       linear-gradient(92deg, #5765FF 10%, #A64DFF 90%);
+  --grad-text:  linear-gradient(92deg, #9AA2FF 20%, #D58DFF 80%);
+}
+
+body {
+  background: var(--dark);
+  color: #fff;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px 60px;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; left: 50%; top: -20%; transform: translateX(-50%);
+  width: min(900px, 130vw); height: 600px; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse at top, rgba(87,101,255,0.32), transparent 60%);
+}
+
+.back-link {
+  position: relative; z-index: 1; align-self: center; display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; color: var(--on-dark-2); text-decoration: none; margin-bottom: 28px; transition: color 0.2s ease;
+}
+.back-link:hover { color: #fff; }
+
+button, input, select, textarea { font-family: inherit; }
+
+.form-card {
+  position: relative; z-index: 1; width: 100%; max-width: 560px;
+  background: linear-gradient(180deg, var(--card-a), var(--card-b)); border: 1px solid var(--card-bdr);
+  border-radius: 20px; padding: 40px 36px; color: #fff;
+}
+
+.form-header { margin-bottom: 24px; }
+.form-eyebrow {
+  display: inline-flex; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #D58DFF; background: rgba(166,77,255,0.12); border: 1px solid rgba(166,77,255,0.3);
+  padding: 7px 16px; border-radius: 999px; margin-bottom: 16px;
+}
+.form-title { font-size: clamp(26px, 4vw, 32px); font-weight: 500; letter-spacing: -0.01em; margin-bottom: 10px; }
+.form-lede { font-size: 15px; color: var(--on-dark-2); line-height: 1.55; }
+
+.modal-form { display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 480px) { .f-row { grid-template-columns: 1fr; } }
+.f-group { display: flex; flex-direction: column; gap: 8px; }
+.f-group-label { font-size: 13px; font-weight: 600; color: #fff; }
+.f-help { font-size: 12px; color: var(--on-dark-2); line-height: 1.5; }
+
+.f-input, .f-select, .f-textarea {
+  width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px; padding: 12px 14px; font-size: 14px; color: #fff;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.f-input::placeholder, .f-textarea::placeholder { color: rgba(255,255,255,0.35); }
+.f-input:focus, .f-select:focus, .f-textarea:focus {
+  outline: none; border-color: rgba(166,77,255,0.6); background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 0 3px rgba(166,77,255,0.18);
+}
+.f-textarea { resize: vertical; min-height: 56px; line-height: 1.5; }
+.f-select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.6) 50%), linear-gradient(135deg, rgba(255,255,255,0.6) 50%, transparent 50%);
+  background-position: calc(100% - 20px) center, calc(100% - 15px) center;
+  background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; padding-right: 40px;
+}
+.f-select option { color: #140A37; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: 999px; font-size: 14px; font-weight: 600; text-decoration: none;
+  padding: 13px 26px; white-space: nowrap; cursor: pointer; border: none;
+  position: relative; overflow: hidden;
+  transition: transform 0.25s cubic-bezier(.22,1,.36,1), box-shadow 0.25s ease;
+}
+.btn-primary { background: var(--grad); color: #fff; }
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.35) 50%, transparent 80%);
+  transform: translateX(-120%); transition: transform 0.6s ease;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(107,74,255,0.4); }
+.btn-primary:hover::before { transform: translateX(120%); }
+.form-submit { width: 100%; margin-top: 4px; }
+
+.form-success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 16px 0 4px; }
+.form-success.is-shown { display: flex; }
+.form-success .seal {
+  width: 52px; height: 52px; border-radius: 999px; background: var(--grad);
+  display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 6px;
+}
+.form-success h3 { font-size: 22px; font-weight: 500; }
+.form-success p { font-size: 14px; color: var(--on-dark-2); line-height: 1.6; max-width: 400px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<a href="https://shopx-2026-buildathon.vercel.app/" class="back-link">← Back to ShopX 2026 Buildathon</a>
+
+<div class="form-card">
+  <div id="applyIntro">
+    <div class="form-header">
+      <div class="form-eyebrow">ShopX 2026 · AI Buildathon</div>
+      <h1 class="form-title">Apply as a Seller</h1>
+      <p class="form-lede">Tell us what you want to build. We'll use your answers to match you with the right track, team, and mentors.</p>
+    </div>
+
+    <form class="modal-form" id="applyForm" novalidate>
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-group-label" for="af-name">Full name</label>
+          <input class="f-input" type="text" id="af-name" name="fullName" required autocomplete="name">
+        </div>
+        <div class="f-group">
+          <label class="f-group-label" for="af-email">Email address</label>
+          <input class="f-input" type="email" id="af-email" name="email" required autocomplete="email">
+        </div>
+      </div>
+
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-group-label" for="af-store">Store / brand name</label>
+          <input class="f-input" type="text" id="af-store" name="storeName" required autocomplete="organization">
+        </div>
+        <div class="f-group">
+          <label class="f-group-label" for="af-url">Store URL</label>
+          <input class="f-input" type="url" id="af-url" name="storeUrl" placeholder="https://" required>
+        </div>
+      </div>
+
+      <div class="f-group">
+        <label class="f-group-label" for="af-track">Which track best matches the problem you want to solve?</label>
+        <select class="f-select" id="af-track" name="track" required>
+          <option value="" disabled selected>Select a track</option>
+          <option value="UGC">UGC — short-form video content</option>
+          <option value="Creative Flow">Creative Flow — ad creatives</option>
+          <option value="CS Workflow">CS Workflow — customer support</option>
+          <option value="AI Workflow">AI Workflow — AI-powered store processes</option>
+          <option value="POD Workflow">POD Workflow — product design and publishing</option>
+          <option value="Retention Workflow">Retention Workflow — repeat purchases and re-engagement</option>
+          <option value="Product Customization Studio">Product Customization Studio — personalized products</option>
+          <option value="Personalized Offer Engine">Personalized Offer Engine — personalized offers and CRO</option>
+          <option value="Open Topic / Other">Open Topic / Other</option>
+        </select>
+        <p class="f-help">Choose the one track that best matches the problem you want to explore with your team and mentors.</p>
+      </div>
+
+      <div class="f-group">
+        <label class="f-group-label" for="af-challenge">What store challenge would you like your team to solve?</label>
+        <textarea class="f-textarea" id="af-challenge" name="challenge" required rows="2"></textarea>
+        <p class="f-help">Tell us what is happening today, who it affects, and what outcome you would like to improve.</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary form-submit">Submit Application</button>
+    </form>
+  </div>
+
+  <div class="form-success" id="applySuccess">
+    <div class="seal">✦</div>
+    <h3>You're in.</h3>
+    <p>Thanks — we'll be in touch to confirm your track, team, and mentors ahead of September 17.</p>
+  </div>
+</div>
+
+<script>
+const intro = document.getElementById('applyIntro');
+const success = document.getElementById('applySuccess');
+const form = document.getElementById('applyForm');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+
+  // TODO: wire this to a real endpoint (GemPages form action, Zapier webhook, Google Sheet, etc.)
+  // Currently the submission only logs to console — no data is stored or sent anywhere yet.
+  const data = Object.fromEntries(new FormData(form).entries());
+  console.log('Buildathon seller application:', data);
+
+  intro.style.display = 'none';
+  success.classList.add('is-shown');
+});
+</script>
+</body>
+</html>
