@@ -32,7 +32,7 @@ html { scroll-behavior: smooth; }
 }
 
 body {
-  background: var(--light);
+  background: var(--bg-deep);
   color: var(--ink);
   font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   font-size: 16px;
@@ -235,34 +235,11 @@ button, input, select, textarea { font-family: inherit; }
 .cert-header .split-sub { margin: 0; }
 @media (max-width: 760px) { .cert-header { flex-direction: column; align-items: flex-start; } }
 .cert-card {
-  background: #11012b; border: 1px solid transparent; border-radius: 16px; padding: 48px 40px; color: #fff; text-align: center;
-  position: relative; overflow: hidden; isolation: isolate; max-width: 900px; margin: 0 auto;
-  display: flex; flex-direction: column; align-items: center;
-  transition: border-color .3s ease;
+  border-radius: 16px; overflow: hidden; max-width: 1170px; margin: 0 auto;
+  border: 1px solid transparent; transition: border-color .3s ease, box-shadow .3s ease;
 }
-.cert-card:hover { border-color: rgba(166,77,255,.4); }
-.cert-card:hover .cert-glow { opacity: 1; }
-.cert-glow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 70% 50% at 30% 0%, rgba(166,77,255,.28), transparent 65%); pointer-events: none; opacity: .6; transition: opacity .3s ease; }
-.cert-powered {
-  position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;
-  flex-wrap: wrap; gap: 10px; row-gap: 6px; font-size: 11px; color: rgba(255,255,255,.55); margin-bottom: 24px;
-}
-.cert-powered img { display: block; height: 13px; width: auto; max-width: 60px; object-fit: contain; opacity: .9; }
-.cert-powered svg { display: block; height: 13px; width: auto; flex-shrink: 0; }
-.cert-powered .divider { width: 1px; height: 12px; background: rgba(255,255,255,.25); flex-shrink: 0; }
-.cert-wordmark { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 20px; }
-.cert-wordmark .shop { font-family: Arial, Helvetica, sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.02em; color: #fff; }
-.cert-wordmark .x-icon { width: 23px; height: 22px; flex-shrink: 0; }
-.cert-wordmark .yr { font-size: 22px; color: rgba(255,255,255,.7); font-weight: 400; margin-left: 2px; }
-.cert-rule { position: relative; z-index: 1; height: 1px; background: rgba(255,255,255,.16); margin-bottom: 26px; width: 220px; }
-.cert-title { position: relative; z-index: 1; font-size: 28px; font-weight: 700; line-height: 1.25; background: linear-gradient(90deg,#6850F5,#EE93FF); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 24px; max-width: 380px; }
-.cert-certify { position: relative; z-index: 1; font-size: 13px; color: rgba(255,255,255,.6); margin-bottom: 10px; }
-.cert-name { position: relative; z-index: 1; font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 32px; margin-bottom: 18px; }
-.cert-desc { position: relative; z-index: 1; font-size: 14px; line-height: 1.6; margin-bottom: 30px; max-width: 380px; }
-.cert-desc b { background: linear-gradient(90deg,#855EF7,#FFC6FF); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.cert-foot { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; max-width: 380px; font-size: 12px; color: rgba(255,255,255,.6); }
-.cert-foot-col { border-top: 1px solid rgba(255,255,255,.2); padding-top: 10px; display: flex; flex-direction: column; gap: 4px; min-height: 34px; }
-.cert-foot-col .label { opacity: .6; }
+.cert-card:hover { border-color: rgba(166,77,255,.4); box-shadow: 0 0 40px rgba(166,77,255,.25); }
+.cert-img { display: block; width: 100%; height: auto; }
 
 /* ── Final CTA ── */
 .closing { text-align: center; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 18px; }
@@ -511,30 +488,8 @@ button, input, select, textarea { font-family: inherit; }
       </div>
       <p class="split-sub">Every Buildathon participant - every seller and every mentor across all 6 teams - receives an official ShopX 2026 Buildathon Certificate of Participation. Awards go to the top teams; recognition goes to everyone who showed up to build.</p>
     </div>
-    <div data-stagger>
-      <div class="cert-card reveal">
-        <div class="cert-glow"></div>
-        <div class="cert-powered">
-          <span>Powered by:</span>
-          <svg viewBox="0 0 86 16" style="height:13px;"><path d="M16.6289 8.13938C16.6289 10.8039 18.5665 12.7451 21.1752 12.7451C23.7713 12.7451 25.6076 10.7912 25.6456 8.07594H20.9093V9.33203H24.0626C23.7333 10.5374 22.5809 11.3368 21.1752 11.3368C19.3517 11.3368 18.1106 10.0299 18.1106 8.13938C18.1106 6.26149 19.3769 4.95461 21.1752 4.95461C22.5049 4.95461 23.632 5.69052 24.0119 6.83246H25.5189C25.1136 4.90385 23.3028 3.54622 21.1373 3.54622C18.5411 3.54622 16.6289 5.5002 16.6289 8.13938Z" fill="white"/><path d="M30.1909 12.7449C31.7105 12.7449 32.9642 11.8695 33.5088 10.423H32.0271C31.6726 11.0447 31.0014 11.4254 30.1909 11.4254C29.0638 11.4254 28.2659 10.7403 28.1013 9.63638H33.6481C33.6607 9.4841 33.6734 9.31916 33.6734 9.16688C33.6734 7.17486 32.2804 5.56344 30.1909 5.56344C28.19 5.56344 26.6703 7.09868 26.6703 9.15422C26.6703 11.197 28.19 12.7449 30.1909 12.7449ZM28.1266 8.49439C28.3673 7.46669 29.1271 6.83226 30.1909 6.83226C31.2293 6.83226 32.0144 7.45396 32.2677 8.49439H28.1266Z" fill="white"/><path d="M36.5733 12.5801V8.83708C36.5733 7.66976 37.2698 6.83234 38.1816 6.83234C39.0427 6.83234 39.5113 7.46676 39.5113 8.57064V12.5801H40.8917V8.83708C40.8917 7.66976 41.5882 6.83234 42.5 6.83234C43.3484 6.83234 43.8297 7.46676 43.8297 8.57064V12.5801H45.2353V8.22803C45.2353 6.66739 44.2602 5.5762 42.8166 5.5762C41.9174 5.5762 41.0816 6.03298 40.5878 6.7689C40.1952 6.03298 39.4607 5.5762 38.5362 5.5762C37.7004 5.5762 36.9153 5.96954 36.4087 6.61664L36.168 5.72846H35.1677V12.5801H36.5733Z" fill="white"/><path d="M48.7212 12.5803V9.5605H50.5448C52.2671 9.5605 53.5588 8.30442 53.5588 6.62955C53.5588 4.94201 52.2544 3.69857 50.5448 3.69857H47.2649V12.5803H48.7212ZM48.7212 5.08158H50.4688C51.4186 5.08158 52.0898 5.74137 52.0898 6.62955C52.0898 7.53043 51.4186 8.17753 50.4688 8.17753H48.7212V5.08158Z" fill="white"/><path d="M57.9925 12.7449C58.9803 12.7449 59.8414 12.377 60.4619 11.7426L60.6013 12.58H61.741V5.72838H60.6519L60.4873 6.5785C59.8667 5.94409 58.9929 5.56344 57.9925 5.56344C55.9536 5.56344 54.4213 7.08602 54.4213 9.15422C54.4213 11.2097 55.9536 12.7449 57.9925 12.7449ZM58.0938 6.90842C59.3855 6.90842 60.3226 7.86001 60.3226 9.15422C60.3226 10.4484 59.3855 11.4 58.0938 11.4C56.8148 11.4 55.8523 10.4357 55.8523 9.15422C55.8523 7.87268 56.8148 6.90842 58.0938 6.90842Z" fill="white"/><path d="M66.6207 12.377C67.5073 12.377 68.2923 12.0725 68.8878 11.565V11.8695C68.8878 13.1764 68.0265 13.9504 66.836 13.9504C65.9749 13.9504 65.177 13.5443 64.9111 12.7831H63.5054C63.86 14.2929 65.1011 15.2065 66.8487 15.2065C68.9633 15.2065 70.2682 13.8742 70.2682 11.6792V5.72838H69.3431L69.1158 6.61656C68.5073 5.95678 67.6213 5.56344 66.6207 5.56344C64.7211 5.56344 63.2395 7.06063 63.2395 8.97655C63.2395 10.8925 64.7211 12.377 66.6207 12.377ZM66.7854 6.87033C68.0011 6.87033 68.8878 7.75852 68.8878 8.97655C68.8878 10.1819 68.0011 11.0701 66.7854 11.0701C65.5696 11.0701 64.6705 10.1693 64.6705 8.97655C64.6705 7.77118 65.5696 6.87033 66.7854 6.87033Z" fill="white"/><path d="M75.2806 12.7449C76.7998 12.7449 78.0539 11.8695 78.5985 10.423H77.1164C76.762 11.0447 76.091 11.4254 75.2806 11.4254C74.1536 11.4254 73.3555 10.7403 73.1907 9.63638H78.7379C78.7503 9.4841 78.7626 9.31916 78.7626 9.16688C78.7626 7.17486 77.3698 5.56344 75.2806 5.56344C73.2793 5.56344 71.7601 7.09868 71.7601 9.15422C71.7601 11.197 73.2793 12.7449 75.2806 12.7449ZM73.2161 8.49439C73.4565 7.46669 74.2168 6.83226 75.2806 6.83226C76.319 6.83226 77.104 7.45396 77.3575 8.49439H73.2161Z" fill="white"/><path d="M79.7369 10.4103C79.7746 11.8314 80.8639 12.7449 82.5356 12.7449C84.1942 12.7449 85.3088 11.8822 85.3088 10.5499C85.3088 8.86239 83.903 8.64667 82.7505 8.44367C81.9277 8.31678 81.2183 8.1899 81.2183 7.58085C81.2183 7.08602 81.6997 6.75613 82.4847 6.75613C83.3075 6.75613 83.802 7.09868 83.8267 7.75852H85.157C85.1316 6.42624 84.1056 5.56344 82.5101 5.56344C80.9271 5.56344 79.8632 6.40086 79.8632 7.63163C79.8632 9.21766 81.2059 9.4841 82.3453 9.67444C83.1811 9.81399 83.916 9.96627 83.916 10.6134C83.916 11.1843 83.3329 11.5015 82.5857 11.5015C81.7629 11.5015 81.1551 11.1336 81.1173 10.4103H79.7369Z" fill="white"/></svg>
-          <span>&amp;</span>
-          <img src="assets/cert-shopos.png" alt="ShopOS">
-          <span class="divider"></span>
-          <img src="assets/cert-pengu.png" alt="Pengu">
-          <span class="divider"></span>
-          <img src="assets/cert-efe.png" alt="EFE Network">
-        </div>
-        <div class="cert-wordmark"><span class="shop">SHOP</span><svg class="x-icon" viewBox="0 0 33.4238 31.9943" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.9609 0L19.1201 6.96484L25.0371 0H33.4238L21.3633 14.1982L25.7832 28.4531H17.3955L15.2188 21.4326L9.25684 28.4531H0.870117L12.9756 14.1992L8.57422 0H16.9609Z" fill="white" fill-opacity="0.3"/><path d="M15.966 3.54114L18.0851 10.424L23.8566 3.54114H32.2433L20.3371 17.7404L24.7257 31.9943H16.339L14.2033 25.0568L8.38688 31.9943H0.000158255L11.9504 17.7404L7.57926 3.54114H15.966Z" fill="white" fill-opacity="0.6"/><path d="M15.9662 3.54114H9.75367L13.0463 14.2888L11.4311 16.0283L11.9281 17.7678L2.91991 28.4533H9.3188L15.2828 21.4332L17.3329 28.4533H23.6697L20.3771 17.8299L21.8878 15.8968L21.3711 14.2267L30.3792 3.54114H23.8185L18.0943 10.4L15.9662 3.54114Z" fill="white"/></svg><span class="yr">2026</span></div>
-        <div class="cert-rule"></div>
-        <div class="cert-title">Certificate of Participation</div>
-        <div class="cert-certify">This is to certify that</div>
-        <div class="cert-name">Your Name</div>
-        <div class="cert-desc">Participated in the <b>Buildathon</b> at ShopX 2026,<br>held on 17th September, 2026.</div>
-        <div class="cert-foot">
-          <div class="cert-foot-col"><span>September 17th 2026</span><span class="label">Date</span></div>
-          <div class="cert-foot-col"><span>&nbsp;</span><span class="label">Signature</span></div>
-        </div>
-      </div>
+    <div class="cert-card reveal">
+      <img class="cert-img" src="assets/certificate.png" alt="ShopX 2026 Buildathon Certificate of Participation — awarded to every seller and mentor across all 6 teams">
     </div>
   </div>
 </section>
