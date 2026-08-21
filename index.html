@@ -53,18 +53,25 @@ body {
 button, input, select, textarea { font-family: inherit; }
 
 /* ── Nav ── */
-.topnav { position: sticky; top: 0; z-index: 100; background: rgba(9,0,22,0.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.08); }
-.topnav .wrap { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; }
-.topnav-brand { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
-.topnav-brand .shop { font-family: Arial, Helvetica, sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -0.02em; color: #fff; }
-.topnav-brand .x-icon { width: 15px; height: 14.3px; }
-.topnav-brand .yr { color: var(--on-dark-2); font-weight: 400; font-size: 15px; margin-left: 1px; }
-.topnav-links { display: flex; gap: 28px; list-style: none; }
-.topnav-links a { position: relative; font-size: 13px; color: var(--on-dark-2); text-decoration: none; transition: color 0.2s; }
+.topnav { position: sticky; top: 16px; z-index: 100; }
+.topnav .wrap { padding: 0 24px; }
+.topnav-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  background: rgba(9,0,22,0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 14px 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.topnav-brand { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.topnav-brand .shop { font-family: Arial, Helvetica, sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.02em; color: #fff; }
+.topnav-brand .x-icon { width: 17px; height: 16.3px; }
+.topnav-brand .yr { color: var(--on-dark-2); font-weight: 400; font-size: 17px; margin-left: 1px; }
+.topnav-links { display: flex; gap: 32px; list-style: none; }
+.topnav-links a { position: relative; font-size: 14px; color: var(--on-dark-2); text-decoration: none; transition: color 0.2s; }
 .topnav-links a::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: var(--grad-text-dark); transition: width 0.25s ease; }
 .topnav-links a:hover { color: #fff; }
 .topnav-links a:hover::after { width: 100%; }
 @media (max-width: 760px) { .topnav-links { display: none; } }
+@media (max-width: 560px) { .topnav { top: 0; } .topnav-bar { border-radius: 0; border-left: none; border-right: none; } }
 
 /* ── Buttons ── */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; font-size: 14px; font-weight: 600; text-decoration: none; padding: 13px 28px; white-space: nowrap; cursor: pointer; border: none; position: relative; overflow: hidden; transition: transform 0.25s cubic-bezier(.22,1,.36,1), box-shadow 0.25s ease; }
@@ -113,10 +120,9 @@ button, input, select, textarea { font-family: inherit; }
 .hero-meta .ic { opacity: .8; }
 .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 .kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 48px; max-width: 700px; margin-inline: auto; }
-.kpi { background: rgba(29,11,68,.55); border: 1px solid rgba(255,255,255,.09); border-radius: 16px; padding: 18px 12px; transition: transform .25s ease, border-color .25s ease; }
-.kpi:hover { transform: translateY(-4px); border-color: rgba(166,77,255,.5); }
-.kpi .n { font-size: 32px; line-height: 1; font-weight: 600; margin-bottom: 4px; transition: transform .25s ease; }
-.kpi:hover .n { transform: scale(1.1); }
+.kpi { background: rgba(29,11,68,.55); border: 1px solid rgba(255,255,255,.09); border-radius: 16px; padding: 18px 12px; transition: background .25s ease, border-color .25s ease; }
+.kpi:hover { background: rgba(45,17,102,.6); border-color: rgba(166,77,255,.5); }
+.kpi .n { font-size: 32px; line-height: 1; font-weight: 600; margin-bottom: 4px; }
 .kpi .l { font-size: 11px; color: var(--on-dark-2); letter-spacing: .08em; text-transform: uppercase; }
 @media (max-width: 640px) { .kpi-row { grid-template-columns: repeat(2,1fr); } }
 
@@ -133,8 +139,8 @@ button, input, select, textarea { font-family: inherit; }
 /* ── What is it ── */
 .wii-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; position: relative; z-index: 2; }
 @media (max-width: 860px) { .wii-grid { grid-template-columns: 1fr; } }
-.card-light { background: var(--light); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 16px; transition: transform .25s ease, box-shadow .25s ease; }
-.card-light:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(20,10,55,.08); }
+.card-light { background: var(--light); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 16px; transition: background .25s ease; }
+.card-light:hover { background: #EDEDF0; }
 .feat-pill { display: inline-flex; align-self: flex-start; background: #fff; color: var(--ink); font-size: 13px; padding: 5px 12px; border-radius: 999px; }
 .card-light h3 { font-size: 28px; font-weight: 500; color: var(--ink); }
 .card-light p { color: var(--ink-3); font-size: 16px; line-height: 1.5; }
@@ -151,25 +157,46 @@ button, input, select, textarea { font-family: inherit; }
 
 /* ── Teams flowchart ── */
 .flow { display: flex; flex-direction: column; align-items: center; gap: 24px; position: relative; z-index: 2; }
-.flow-top { display: flex; gap: 24px; }
-.flow-connector { width: 2px; height: 40px; background: rgba(255,255,255,0.16); position: relative; }
-.flow-elbow { width: 401px; height: 40px; border: 2px solid rgba(255,255,255,0.16); border-top: none; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; border-bottom: none; position: relative; }
-.flow-elbow::before, .flow-elbow::after { content:''; position:absolute; top:0; width:2px; height:20px; background: rgba(255,255,255,0.16); }
-.flow-elbow::before { left: 0; } .flow-elbow::after { right: 0; }
-.flow-card { background: linear-gradient(180deg, var(--card-a1), var(--card-b1)); border: 1px solid var(--card-bdr); border-radius: 12px; padding: 32px; width: 300px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; transition: transform .25s ease, box-shadow .25s ease; }
-.flow-card:hover { transform: translateY(-6px); box-shadow: 0 20px 44px rgba(107,74,255,.35); }
+.flow-top { display: flex; gap: 30px; }
+.flow-card {
+  background: linear-gradient(180deg, var(--card-a1), var(--card-b1)); border: 1px solid var(--card-bdr);
+  border-radius: 12px; padding: 32px; width: 370px; text-align: center; display: flex; flex-direction: column;
+  align-items: center; gap: 16px; transition: background .3s ease, border-color .3s ease;
+}
+.flow-card:hover { background: linear-gradient(180deg, #632db9, var(--card-b1)); }
 .flow-card .ic { width: 40px; height: 40px; opacity: .5; }
 .flow-card h3 { font-size: 23px; font-weight: 500; }
-.flow-card p { font-size: 15px; opacity: .7; }
-.flow-result { background: linear-gradient(180deg, rgba(87,101,255,.22), rgba(29,11,68,.7)); border: 1px solid rgba(154,162,255,.5); border-radius: 12px; padding: 32px; width: 624px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; transition: transform .25s ease; }
-.flow-result:hover { transform: translateY(-4px); }
+.flow-card p { font-size: 16px; opacity: .7; }
+.flow-connector { width: 396px; height: 108px; margin: 0 auto; display: block; }
+.flow-stack { position: relative; width: 770px; height: 287px; margin: 0 auto; }
+.flow-stack .ghost {
+  position: absolute; left: 50%; transform: translateX(-50%); border: 1px solid var(--card-bdr);
+  border-radius: 12px; background: linear-gradient(180deg, var(--card-a1), var(--card-b1)); opacity: .2;
+}
+.flow-stack .ghost.g1 { width: 738px; height: 205px; top: 30px; }
+.flow-stack .ghost.g2 { width: 694px; height: 191px; top: 59px; }
+.flow-stack .ghost.g3 { width: 654px; height: 180px; top: 84px; }
+.flow-result {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(87,101,255,.22), rgba(29,11,68,.7)); border: 1px solid rgba(154,162,255,.5);
+  border-radius: 12px; padding: 32px; width: 770px; height: 213px; box-sizing: border-box;
+  text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; transition: border-color .3s ease, background .3s ease;
+}
+.flow-result:hover { border-color: rgba(154,162,255,.8); background: linear-gradient(180deg, rgba(87,101,255,.3), rgba(29,11,68,.75)); }
 .flow-result .ic { width: 40px; height: 40px; opacity: .5; }
 .flow-result h3 { font-size: 23px; font-weight: 500; }
-.flow-result p { font-size: 15px; opacity: .7; }
-@media (max-width: 700px) { .flow-top { flex-direction: column; } .flow-elbow, .flow-result { width: 300px; } }
-.team-chips { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; margin-top: 8px; }
-.team-chips .item { display: flex; align-items: center; gap: 8px; font-size: 15px; }
-.team-chips .item .ic { width: 18px; height: 18px; }
+.flow-result p { font-size: 16px; opacity: .7; }
+@media (max-width: 820px) {
+  .flow-top { flex-direction: column; align-items: center; }
+  .flow-stack, .flow-stack .ghost, .flow-result { width: 370px; }
+  .flow-stack { height: auto; }
+  .flow-result { position: static; transform: none; height: auto; margin: 0 auto; }
+  .flow-stack .ghost { display: none; }
+}
+.team-chips { display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; margin-top: 16px; }
+.team-chips .item { display: flex; align-items: center; gap: 8px; font-size: 16px; }
+.team-chips .item .ic { width: 20px; height: 20px; }
 
 /* ── Tracks list ── */
 .track-rows { display: flex; flex-direction: column; position: relative; z-index: 2; }
@@ -183,8 +210,8 @@ button, input, select, textarea { font-family: inherit; }
 
 /* ── Why join staggered ── */
 .why-grid { display: flex; align-items: flex-end; gap: 24px; justify-content: center; position: relative; z-index: 2; }
-.why-card { background: linear-gradient(180deg, var(--card-a2), var(--card-b2)); border: 1px solid var(--card-bdr); border-radius: 12px; padding: 32px; width: 330px; height: 330px; display: flex; flex-direction: column; justify-content: space-between; transition: transform .25s ease, box-shadow .25s ease; }
-.why-card:hover { transform: translateY(-8px); box-shadow: 0 20px 44px rgba(107,74,255,.35); }
+.why-card { background: linear-gradient(180deg, var(--card-a2), var(--card-b2)); border: 1px solid var(--card-bdr); border-radius: 12px; padding: 32px; width: 330px; height: 330px; display: flex; flex-direction: column; justify-content: space-between; transition: background .3s ease, border-color .3s ease; }
+.why-card:hover { background: linear-gradient(180deg, #2b0f66, var(--card-b2)); border-color: rgba(255,255,255,0.3); }
 .why-card:nth-child(2) { margin-bottom: 72px; }
 .why-card:nth-child(3) { margin-bottom: 144px; }
 .why-card .ic { width: 48px; height: 48px; opacity: .35; }
@@ -207,13 +234,14 @@ button, input, select, textarea { font-family: inherit; }
 @media (max-width: 860px) { .cert-grid { grid-template-columns: 1fr; } }
 .cert-copy p { color: var(--ink-2); font-size: 16px; line-height: 1.5; margin-top: 20px; }
 .cert-card {
-  background: #11012b; border-radius: 16px; padding: 44px 40px; color: #fff; text-align: center;
+  background: #11012b; border: 1px solid transparent; border-radius: 16px; padding: 44px 40px; color: #fff; text-align: center;
   position: relative; overflow: hidden; isolation: isolate;
   display: flex; flex-direction: column; align-items: center;
-  transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease;
+  transition: border-color .3s ease;
 }
-.cert-card:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 24px 50px rgba(107,74,255,.35); }
-.cert-glow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 70% 50% at 30% 0%, rgba(166,77,255,.28), transparent 65%); pointer-events: none; }
+.cert-card:hover { border-color: rgba(166,77,255,.4); }
+.cert-card:hover .cert-glow { opacity: 1; }
+.cert-glow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 70% 50% at 30% 0%, rgba(166,77,255,.28), transparent 65%); pointer-events: none; opacity: .6; transition: opacity .3s ease; }
 .cert-powered {
   position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;
   flex-wrap: wrap; gap: 10px; row-gap: 6px; font-size: 11px; color: rgba(255,255,255,.55); margin-bottom: 24px;
@@ -255,14 +283,16 @@ button, input, select, textarea { font-family: inherit; }
 
 <nav class="topnav">
   <div class="wrap">
-    <a href="https://2026.shopxevent.com/" class="topnav-brand"><span class="shop">SHOP</span><svg class="x-icon" viewBox="0 0 33.4238 31.9943" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.9609 0L19.1201 6.96484L25.0371 0H33.4238L21.3633 14.1982L25.7832 28.4531H17.3955L15.2188 21.4326L9.25684 28.4531H0.870117L12.9756 14.1992L8.57422 0H16.9609Z" fill="white" fill-opacity="0.3"/><path d="M15.966 3.54114L18.0851 10.424L23.8566 3.54114H32.2433L20.3371 17.7404L24.7257 31.9943H16.339L14.2033 25.0568L8.38688 31.9943H0.000158255L11.9504 17.7404L7.57926 3.54114H15.966Z" fill="white" fill-opacity="0.6"/><path d="M15.9662 3.54114H9.75367L13.0463 14.2888L11.4311 16.0283L11.9281 17.7678L2.91991 28.4533H9.3188L15.2828 21.4332L17.3329 28.4533H23.6697L20.3771 17.8299L21.8878 15.8968L21.3711 14.2267L30.3792 3.54114H23.8185L18.0943 10.4L15.9662 3.54114Z" fill="white"/></svg><span class="yr">2026</span></a>
-    <ul class="topnav-links">
-      <li><a href="#what">What is it</a></li>
-      <li><a href="#teams">Teams</a></li>
-      <li><a href="#tracks">Tracks</a></li>
-      <li><a href="#schedule">Schedule</a></li>
-    </ul>
-    <button type="button" class="btn btn-primary js-open-apply" style="padding:9px 20px; font-size:13px;">Apply as a Seller</button>
+    <div class="topnav-bar">
+      <a href="https://2026.shopxevent.com/" class="topnav-brand"><span class="shop">SHOP</span><svg class="x-icon" viewBox="0 0 33.4238 31.9943" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.9609 0L19.1201 6.96484L25.0371 0H33.4238L21.3633 14.1982L25.7832 28.4531H17.3955L15.2188 21.4326L9.25684 28.4531H0.870117L12.9756 14.1992L8.57422 0H16.9609Z" fill="white" fill-opacity="0.3"/><path d="M15.966 3.54114L18.0851 10.424L23.8566 3.54114H32.2433L20.3371 17.7404L24.7257 31.9943H16.339L14.2033 25.0568L8.38688 31.9943H0.000158255L11.9504 17.7404L7.57926 3.54114H15.966Z" fill="white" fill-opacity="0.6"/><path d="M15.9662 3.54114H9.75367L13.0463 14.2888L11.4311 16.0283L11.9281 17.7678L2.91991 28.4533H9.3188L15.2828 21.4332L17.3329 28.4533H23.6697L20.3771 17.8299L21.8878 15.8968L21.3711 14.2267L30.3792 3.54114H23.8185L18.0943 10.4L15.9662 3.54114Z" fill="white"/></svg><span class="yr">2026</span></a>
+      <ul class="topnav-links">
+        <li><a href="#what">What is it</a></li>
+        <li><a href="#teams">Teams</a></li>
+        <li><a href="#tracks">Tracks</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+      </ul>
+      <button type="button" class="btn btn-primary js-open-apply" style="padding:12px 24px; font-size:14px;">Apply as a Seller</button>
+    </div>
   </div>
 </nav>
 
@@ -371,11 +401,19 @@ button, input, select, textarea { font-family: inherit; }
           <p>Your build crew - they lead the build</p>
         </div>
       </div>
-      <div class="flow-elbow"></div>
-      <div class="flow-result">
-        <svg class="ic" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="17" stroke="white" stroke-width="1.6"/><circle cx="20" cy="20" r="10" stroke="white" stroke-width="1.6"/><circle cx="20" cy="20" r="3" stroke="white" stroke-width="1.6"/></svg>
-        <h3>1 Team, 1 Track</h3>
-        <p>One working AI workflow by 16:30</p>
+      <svg class="flow-connector" viewBox="0 0 401.773 113.773" fill="none" preserveAspectRatio="none">
+        <path d="M2.88675 0L0 2.88675L2.88675 5.7735L5.7735 2.88675L2.88675 0ZM398.887 0L396 2.88675L398.887 5.7735L401.774 2.88675L398.887 0ZM200.887 113.774L203.774 110.887L200.887 108L198 110.887L200.887 113.774ZM2.88675 2.88675H2.38675V44.3384H2.88675H3.38675V2.88675H2.88675ZM398.887 44.3384H399.387V2.88675H398.887H398.387V44.3384H398.887ZM12.8868 54.3384V54.8384H200.887V54.3384V53.8384H12.8868V54.3384ZM200.887 54.3384V54.8384H388.887V54.3384V53.8384H200.887V54.3384ZM200.887 54.3384H200.387V110.887H200.887H201.387V54.3384H200.887ZM398.887 44.3384H398.387C398.387 49.5851 394.133 53.8384 388.887 53.8384V54.3384V54.8384C394.686 54.8384 399.387 50.1374 399.387 44.3384H398.887ZM2.88675 44.3384H2.38675C2.38675 50.1374 7.08776 54.8384 12.8868 54.8384V54.3384V53.8384C7.64005 53.8384 3.38675 49.5851 3.38675 44.3384H2.88675Z" fill="url(#flowGrad)"/>
+        <defs><linearGradient id="flowGrad" x1="200.887" y1="-31.6132" x2="200.887" y2="122.887" gradientUnits="userSpaceOnUse"><stop stop-color="white"/><stop offset="1" stop-color="#B689FF" stop-opacity="0"/></linearGradient></defs>
+      </svg>
+      <div class="flow-stack">
+        <div class="ghost g1"></div>
+        <div class="ghost g2"></div>
+        <div class="ghost g3"></div>
+        <div class="flow-result">
+          <svg class="ic" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="17" stroke="white" stroke-width="1.6"/><circle cx="20" cy="20" r="10" stroke="white" stroke-width="1.6"/><circle cx="20" cy="20" r="3" stroke="white" stroke-width="1.6"/></svg>
+          <h3>1 Team, 1 Track</h3>
+          <p>One working AI workflow by 16:30</p>
+        </div>
       </div>
     </div>
 
@@ -405,7 +443,7 @@ button, input, select, textarea { font-family: inherit; }
       <div class="track-row reveal"><div class="track-num">[05]</div><div class="track-name">Retention Workflow</div><div class="track-desc">Build an AI flow that brings customers back and keeps them buying.</div></div>
       <div class="track-row reveal"><div class="track-num">[06]</div><div class="track-name">Product Customization Studio</div><div class="track-desc">Let shoppers build their own product, right on your storefront.</div></div>
       <div class="track-row reveal"><div class="track-num">[07]</div><div class="track-name">Personalized Offer Engine</div><div class="track-desc">Turn product &amp; customer data into a personalized offer, shown live on your landing page.</div></div>
-      <div class="track-row reveal"><div class="track-num">Open Topic</div><div class="track-name">Open Topic</div><div class="track-desc">Have a different store problem in mind? Pitch your own AI workflow and build it with your team.</div></div>
+      <div class="track-row reveal"><div class="track-num">∞</div><div class="track-name">Open Topic</div><div class="track-desc">Have a different store problem in mind? Pitch your own AI workflow and build it with your team.</div></div>
     </div>
   </div>
 </section>
