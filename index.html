@@ -168,16 +168,17 @@ button, input, select, textarea { font-family: inherit; }
 .flow-card h3 { font-size: 23px; font-weight: 500; }
 .flow-card p { font-size: 16px; opacity: .7; }
 .flow-connector { width: 396px; height: 108px; margin: 0 auto; display: block; }
-.flow-stack { position: relative; width: 770px; height: 287px; margin: 0 auto; }
+.flow-stack { position: relative; width: 770px; height: 245px; margin: 0 auto; }
 .flow-stack .ghost {
-  position: absolute; left: 50%; transform: translateX(-50%); border: 1px solid var(--card-bdr);
-  border-radius: 12px; background: linear-gradient(180deg, var(--card-a1), var(--card-b1)); opacity: .2;
+  position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 770px; height: 213px;
+  border: 1px solid var(--card-bdr); border-radius: 12px;
+  background: linear-gradient(180deg, var(--card-a1), var(--card-b1));
 }
-.flow-stack .ghost.g1 { width: 738px; height: 205px; top: 30px; }
-.flow-stack .ghost.g2 { width: 694px; height: 191px; top: 59px; }
-.flow-stack .ghost.g3 { width: 654px; height: 180px; top: 84px; }
+.flow-stack .ghost.g1 { top: 10px; opacity: .18; }
+.flow-stack .ghost.g2 { top: 20px; opacity: .12; }
+.flow-stack .ghost.g3 { top: 30px; opacity: .07; }
 .flow-result {
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 1;
   background: linear-gradient(180deg, rgba(87,101,255,.22), rgba(29,11,68,.7)); border: 1px solid rgba(154,162,255,.5);
   border-radius: 12px; padding: 32px; width: 770px; height: 213px; box-sizing: border-box;
   text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -212,8 +213,8 @@ button, input, select, textarea { font-family: inherit; }
 .why-grid { display: flex; align-items: flex-end; gap: 24px; justify-content: center; position: relative; z-index: 2; }
 .why-card { background: linear-gradient(180deg, var(--card-a2), var(--card-b2)); border: 1px solid var(--card-bdr); border-radius: 12px; padding: 32px; width: 330px; height: 330px; display: flex; flex-direction: column; justify-content: space-between; transition: background .3s ease, border-color .3s ease; }
 .why-card:hover { background: linear-gradient(180deg, #2b0f66, var(--card-b2)); border-color: rgba(255,255,255,0.3); }
+.why-card:nth-child(1) { margin-bottom: 144px; }
 .why-card:nth-child(2) { margin-bottom: 72px; }
-.why-card:nth-child(3) { margin-bottom: 144px; }
 .why-card .ic { width: 48px; height: 48px; opacity: .35; }
 .why-card h3 { font-size: 22px; font-weight: 500; margin-bottom: 10px; }
 .why-card p { font-size: 15px; opacity: .7; line-height: 1.4; }
@@ -230,12 +231,12 @@ button, input, select, textarea { font-family: inherit; }
 @media (max-width: 700px) { .ag-row { flex-direction: column; align-items: flex-start; gap: 8px; } .ag-time { width: auto; font-size: 22px; } }
 
 /* ── Certificate ── */
-.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; position: relative; z-index: 2; }
-@media (max-width: 860px) { .cert-grid { grid-template-columns: 1fr; } }
-.cert-copy p { color: var(--ink-2); font-size: 16px; line-height: 1.5; margin-top: 20px; }
+.cert-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; text-align: left; margin-bottom: 48px; position: relative; z-index: 2; }
+.cert-header .split-sub { margin: 0; }
+@media (max-width: 760px) { .cert-header { flex-direction: column; align-items: flex-start; } }
 .cert-card {
-  background: #11012b; border: 1px solid transparent; border-radius: 16px; padding: 44px 40px; color: #fff; text-align: center;
-  position: relative; overflow: hidden; isolation: isolate;
+  background: #11012b; border: 1px solid transparent; border-radius: 16px; padding: 48px 40px; color: #fff; text-align: center;
+  position: relative; overflow: hidden; isolation: isolate; max-width: 900px; margin: 0 auto;
   display: flex; flex-direction: column; align-items: center;
   transition: border-color .3s ease;
 }
@@ -503,12 +504,14 @@ button, input, select, textarea { font-family: inherit; }
 <!-- ══ CERTIFICATE ══ -->
 <section class="band light">
   <div class="wrap">
-    <div class="cert-grid" data-stagger>
-      <div class="cert-copy reveal">
-        <div class="badge" style="margin-bottom:16px;">CERTIFICATE</div>
-        <h2 class="h2">Win Or Not, <span class="grad-light">You Walk Away With Proof.</span></h2>
-        <p>Every Buildathon participant - every seller and every mentor across all 6 teams - receives an official ShopX 2026 Buildathon Certificate of Participation. Awards go to the top teams; recognition goes to everyone who showed up to build.</p>
+    <div class="cert-header split reveal">
+      <div>
+        <div class="badge" style="margin-bottom:12px;">CERTIFICATE</div>
+        <h2 class="h2">Win Or Not, <span class="grad-light">You Walk Away<br>With Proof.</span></h2>
       </div>
+      <p class="split-sub">Every Buildathon participant - every seller and every mentor across all 6 teams - receives an official ShopX 2026 Buildathon Certificate of Participation. Awards go to the top teams; recognition goes to everyone who showed up to build.</p>
+    </div>
+    <div data-stagger>
       <div class="cert-card reveal">
         <div class="cert-glow"></div>
         <div class="cert-powered">
