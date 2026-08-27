@@ -161,7 +161,6 @@ button, input, select, textarea { font-family: inherit; }
           <option value="UGC">UGC — short-form video content</option>
           <option value="Creative Flow">Creative Flow — ad creatives</option>
           <option value="CS Workflow">CS Workflow — customer support</option>
-          <option value="AI Workflow">AI Workflow — AI-powered store processes</option>
           <option value="POD Workflow">POD Workflow — product design and publishing</option>
           <option value="Retention Workflow">Retention Workflow — repeat purchases and re-engagement</option>
           <option value="Product Customization Studio">Product Customization Studio — personalized products</option>
@@ -193,17 +192,52 @@ const intro = document.getElementById('applyIntro');
 const success = document.getElementById('applySuccess');
 const form = document.getElementById('applyForm');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!form.checkValidity()) { form.reportValidity(); return; }
 
-  // TODO: wire this to a real endpoint (GemPages form action, Zapier webhook, Google Sheet, etc.)
-  // Currently the submission only logs to console — no data is stored or sent anywhere yet.
-  const data = Object.fromEntries(new FormData(form).entries());
-  console.log('Buildathon seller application:', data);
+  const submitBtn = form.querySelector('.form-submit');
+  submitBtn.disabled = true;
 
-  intro.style.display = 'none';
-  success.classList.add('is-shown');
+  const urlParams = new URLSearchParams(window.location.search);
+  const payload = {
+    sessionUuid: crypto.randomUUID(),
+    captchas: {},
+    isCompleted: true,
+    password: null,
+    respondentUuid: crypto.randomUUID(),
+    responses: {
+      "6191b655-0170-4dd0-b00c-cd7821857d6f": document.getElementById('af-name').value,
+      "fd57c122-096b-4a4f-9f81-cdf60255e98f": document.getElementById('af-email').value,
+      "eda64876-130a-4c91-98b6-66b1f9ac1c96": document.getElementById('af-store').value,
+      "d5be88c9-d065-45bd-82d3-4702746626f6": document.getElementById('af-url').value,
+      "14e467a4-e6a1-4b0f-b71d-a70d6d9e56ac": document.getElementById('af-track').value,
+      "5248bbd7-5608-4722-9c4a-68d9a00a0fd4": document.getElementById('af-challenge').value,
+      "5721b069-95ec-43b2-a95c-d4fae73ce8c1": urlParams.get('utm_source') || '',
+      "dcf90d82-cdc9-4bee-a0ef-6aac76948a37": urlParams.get('utm_medium') || '',
+      "adcfe25a-f339-48b7-81d3-15253d7a9ef5": urlParams.get('utm_campaign') || '',
+      "66f01bba-86e5-4e61-b786-a5ea05047334": urlParams.get('utm_content') || '',
+      "e743ea02-babd-4293-9329-8f160c1098e1": urlParams.get('utm_term') || ''
+    }
+  };
+
+  try {
+    const res = await fetch('https://api.tally.so/forms/GxVyZZ/respond', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'tally-version': '2025-01-15' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+
+    if (typeof fbq === 'function') fbq('track', 'CompleteRegistration');
+
+    intro.style.display = 'none';
+    success.classList.add('is-shown');
+  } catch (err) {
+    console.error('Buildathon seller application failed:', err);
+    submitBtn.disabled = false;
+    alert('Something went wrong submitting your application. Please try again or email us directly.');
+  }
 });
 </script>
 </body>
