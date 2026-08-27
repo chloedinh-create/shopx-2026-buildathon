@@ -214,7 +214,7 @@ button, input, select, textarea { font-family: inherit; }
 /* ── Why join staggered ── */
 .why-grid { display: flex; align-items: flex-end; gap: 24px; justify-content: center; position: relative; z-index: 2; }
 .why-card { background: linear-gradient(180deg, var(--card-a2), var(--card-b2)); border: 1px solid var(--card-bdr); border-radius: 12px; padding: 32px; width: 330px; height: 330px; display: flex; flex-direction: column; justify-content: space-between; transition: background .3s ease, border-color .3s ease; }
-.why-card:hover { background: linear-gradient(180deg, #2b0f66, var(--card-b2)); border-color: rgba(255,255,255,0.3); }
+.why-card:hover { background: url('https://cdn.shopify.com/s/files/1/1833/4291/files/Property_1_Variant2.png?v=1787643398') no-repeat center; background-size: cover; border-color: rgba(255,255,255,0.3); }
 .why-card:nth-child(1) { margin-bottom: 144px; }
 .why-card:nth-child(2) { margin-bottom: 72px; }
 .why-card .ic { width: 48px; height: 48px; opacity: .35; }
@@ -225,9 +225,10 @@ button, input, select, textarea { font-family: inherit; }
 
 /* ── Schedule ── */
 .agenda { display: flex; flex-direction: column; max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
-.ag-row { display: flex; align-items: center; gap: 60px; padding: 28px 0; border-bottom: 1px solid var(--line); transition: background .2s ease; }
-.ag-row:hover { background: rgba(87,101,255,.03); }
-.ag-time { flex-shrink: 0; width: 220px; font-size: clamp(24px,3vw,34px); font-weight: 400; color: #cdcdcd; }
+.ag-row { display: flex; align-items: center; gap: 60px; padding: 28px 0; border-bottom: 1px solid var(--line); transition: background .3s ease, transform .3s ease; }
+.ag-row:hover { background: rgba(87,101,255,.03); transform: translateY(-3px); }
+.ag-time { flex-shrink: 0; width: 220px; font-size: clamp(24px,3vw,34px); font-weight: 400; color: #cdcdcd; transition: color .3s ease; }
+.ag-row:hover .ag-time { background: linear-gradient(90deg, #6850F5 -16.91%, #9A2EFF 94.23%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; }
 .ag-row h4 { font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
 .ag-row p { font-size: 15px; color: var(--ink-2); }
 @media (max-width: 700px) { .ag-row { flex-direction: column; align-items: flex-start; gap: 8px; } .ag-time { width: auto; font-size: 22px; } }
@@ -281,7 +282,7 @@ button, input, select, textarea { font-family: inherit; }
         <li><a href="#schedule">Schedule</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
-      <button type="button" class="btn btn-primary js-open-apply" style="padding:12px 24px; font-size:14px;">Apply as a Seller</button>
+      <button type="button" class="btn btn-primary js-open-apply" style="padding:12px 24px; font-size:14px;">Join ShopX Buildathon</button>
     </div>
   </div>
 </nav>
@@ -293,7 +294,7 @@ button, input, select, textarea { font-family: inherit; }
   <div class="hero-beam r"></div>
   <div class="wrap hero-inner">
     <div class="hero-tag">ShopX 2026 · AI Buildathon</div>
-    <h1 class="hero-title">Bring a real store challenge.<br>Build it with <span class="grad-dark">expert mentors.</span></h1>
+    <h1 class="hero-title">Bring a Use Case.<br>Build a <span class="grad-dark">Practical AI Solution.</span></h1>
     <p class="hero-sub">A hands-on afternoon for Shopify sellers to turn real store use cases into practical AI workflows or mini-apps they can adapt and test in their own store.</p>
     <div class="hero-meta">
       <span class="ic">🕐</span><span>13:15 – 17:00</span>
@@ -303,7 +304,7 @@ button, input, select, textarea { font-family: inherit; }
       <span class="ic">📍</span><span>New World Saigon Hotel, Ho Chi Minh City</span>
     </div>
     <div class="cta-row">
-      <button type="button" class="btn btn-primary js-open-apply">Apply as a Seller</button>
+      <button type="button" class="btn btn-primary js-open-apply">Join ShopX Buildathon</button>
     </div>
     <div class="kpi-row">
       <div class="kpi"><div class="n grad-dark">6</div><div class="l">Teams</div></div>
@@ -514,7 +515,7 @@ button, input, select, textarea { font-family: inherit; }
     <h2 class="h2">Bring A Use Case. <span class="grad-dark">Leave With A Way Forward.</span></h2>
     <p class="band-sub">Join a practical afternoon of AI building with expert mentors from leading AI and ecommerce apps.</p>
     <div class="cta-row">
-      <button type="button" class="btn btn-primary js-open-apply">Apply as a Seller</button>
+      <button type="button" class="btn btn-primary js-open-apply">Join ShopX Buildathon</button>
       <a href="https://2026.shopxevent.com/" class="btn btn-secondary">Get Your Ticket</a>
     </div>
   </div>
